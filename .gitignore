@@ -88,5 +88,5 @@ fabric.properties
 
 /grafana-data/
 /influxdb-data/
-/.idea/
 /SSL.iml
+/.idea/
