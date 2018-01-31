@@ -1,0 +1,6 @@
+import java.lang.reflect.Method;
+
+contribute(currentType(subType('groovy.lang.Script'))) {
+
+	method type: Script, name: 'sensor', params: [name:String], doc: 'Create a new Sensor'
+}
