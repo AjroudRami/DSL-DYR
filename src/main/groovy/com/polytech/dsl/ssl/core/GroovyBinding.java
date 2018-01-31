@@ -1,4 +1,4 @@
-package com.polytech.dsl.ssl.dsl;
+package com.polytech.dsl.ssl.core;
 
 import java.util.Map;
 

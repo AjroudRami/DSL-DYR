@@ -1,6 +1,6 @@
 package com.polytech.dsl.ssl.main;
 
-import com.polytech.dsl.ssl.dsl.GroovyDSL;
+import com.polytech.dsl.ssl.core.GroovyDSL;
 
 import java.io.File;
 
