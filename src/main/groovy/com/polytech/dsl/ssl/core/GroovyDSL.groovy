@@ -1,4 +1,4 @@
-package com.polytech.dsl.ssl.dsl
+package com.polytech.dsl.ssl.core
 
 import org.codehaus.groovy.control.CompilerConfiguration
 import org.codehaus.groovy.control.customizers.SecureASTCustomizer
@@ -14,7 +14,7 @@ class GroovyDSL {
         binding = new GroovyBinding()
         // binding.setGroovyModel(new GroovyModel(binding));
         configuration = getDSLConfiguration()
-        configuration.setScriptBaseClass("com.polytech.dsl.ssl.dsl.GroovyBasescript")
+        configuration.setScriptBaseClass("com.polytech.dsl.ssl.core.GroovyBasescript")
         shell = new GroovyShell(configuration)
     }
 
