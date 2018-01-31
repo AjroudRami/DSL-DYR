@@ -14,7 +14,7 @@ class GroovyDSL {
         binding = new GroovyBinding()
         // binding.setGroovyModel(new GroovyModel(binding));
         configuration = getDSLConfiguration()
-        configuration.setScriptBaseClass("main.groovy.groovuinoml.dsl.GroovyBasescript")
+        configuration.setScriptBaseClass("com.polytech.dsl.ssl.dsl.GroovyBasescript")
         shell = new GroovyShell(configuration)
     }
 
