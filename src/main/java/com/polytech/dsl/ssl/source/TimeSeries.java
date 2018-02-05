@@ -28,12 +28,16 @@ public class TimeSeries {
         return measures;
     }
 
+    public Collection<SensorMeasure> getMeasures(){
+        return this.data.values();
+    }
+
     /**
      * Put a new measure on the time serie
      * Duplicate measure (same timestamp) will not be added
      * @param measure
      */
-    protected void putMeasure(SensorMeasure measure){
+    public void putMeasure(SensorMeasure measure){
         this.data.putIfAbsent(measure.time(), measure);
     }
 }

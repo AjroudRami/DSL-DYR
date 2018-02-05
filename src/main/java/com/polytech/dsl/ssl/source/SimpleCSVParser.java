@@ -7,9 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
-public class SimpleCSVParser {
+public class SimpleCSVParser implements Source{
 
-    private static final String SEP = ",";
+    private static final String SEP = ";";
     private static final String SENSOR_NAME = "sensor";
     private static final String TIME = "time";
 
@@ -27,7 +27,7 @@ public class SimpleCSVParser {
         TimeSeries series = new TimeSeries();
         Stream<String> stream = Files.lines(Paths.get(file.toURI()));
         stream.limit(1).forEach(l -> setHeaders(l));
-        stream.parallel().skip(1).forEach(l -> series.putMeasure(parseLine(l)));
+        Files.lines(Paths.get(file.toURI())).skip(1).parallel().forEach(l -> series.putMeasure(parseLine(l)));
         return series;
     }
 
@@ -55,11 +55,24 @@ public class SimpleCSVParser {
 
     private Object parseValue(String value) {
         try {
-            return Long.parseLong(value);
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {}
+        try {
+            return Double.parseDouble(value);
         } catch (NumberFormatException e) {}
         if(value.equals("true") || value.equals("false")) {
             return Boolean.getBoolean(value);
         }
         return value;
+    }
+
+    @Override
+    public TimeSeries getTimeSeries() {
+        try {
+            return this.parse();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new TimeSeries();
+        }
     }
 }

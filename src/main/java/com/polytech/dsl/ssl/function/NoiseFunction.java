@@ -2,7 +2,7 @@ package com.polytech.dsl.ssl.function;
 
 import com.polytech.dsl.ssl.source.SensorMeasure;
 
-public interface SensorLaw {
+public interface NoiseFunction {
 
-    SensorMeasure getMeasure(long time);
+    SensorMeasure makeNoise(SensorMeasure measure);
 }
