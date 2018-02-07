@@ -12,6 +12,11 @@ package com.polytech.dsl.ssl.core.regression;
 
 import Jama.Matrix;
 import Jama.QRDecomposition;
+import com.polytech.dsl.ssl.function.SensorLaw;
+import com.polytech.dsl.ssl.source.SensorMeasure;
+import com.polytech.dsl.ssl.source.TimeSeries;
+
+import java.util.Iterator;
 
 /**
  *  The {@code PolynomialRegression} class performs a polynomial regression
@@ -32,7 +37,7 @@ import Jama.QRDecomposition;
  *  @author Robert Sedgewick
  *  @author Kevin Wayne
  */
-public class PolynomialRegression implements Comparable<PolynomialRegression> {
+public class PolynomialRegression implements Comparable<PolynomialRegression>, Regression {
     private final String variableName;  // name of the predictor variable
     private int degree;                 // degree of the polynomial regression
     private Matrix beta;                // the polynomial regression coefficients
@@ -220,5 +225,33 @@ public class PolynomialRegression implements Comparable<PolynomialRegression> {
 
         // Use System.out.println() so that it works with either stdlib.jar or algs4.jar version
         System.out.println(regression);
+    }
+
+    @Override
+    public SensorLaw getSensorLaw(TimeSeries timeSeries) {
+        int degree = 3;
+        Iterator<SensorMeasure> measureIterator = timeSeries.getMeasures().iterator();
+        int nbMeasures = timeSeries.getMeasures().size();
+        double[] x = new double[nbMeasures];
+        double[] y = new double[nbMeasures];
+        int i = 0;
+        while (measureIterator.hasNext()) {
+            SensorMeasure measure = measureIterator.next();
+            long time = measure.time();
+            String[] labels = measure.getLabels();
+            if(labels.length != 1) {
+                throw new IllegalArgumentException("Polynomial regression only works for 1 dimensional sensor type");
+            }
+            double val = measure.getDouble(labels[0]).get();
+            double doubleTime = time;
+            y[i] = val;
+            x[i] = doubleTime;
+            i++;
+        }
+        SensorMeasure firstMeasure = ((SensorMeasure) timeSeries.getMeasures().toArray()[0]);
+        String sensorName = firstMeasure.sensorName();
+        PolynomialRegression reg = new PolynomialRegression(x, y, degree);
+        SensorLaw law = new PolynomialLaw(sensorName, reg.beta, firstMeasure.getLabels()[0], degree);
+        return law;
     }
 }
