@@ -18,6 +18,12 @@ public class SensorMeasure{
         this.measures = new HashMap<>();
     }
 
+    public String[] getLabels(){
+        String[] res = new String[this.measures.keySet().size()];
+        this.measures.keySet().toArray(res);
+        return res;
+    }
+
     public Long time(){return this.time;}
     public String sensorName(){return this.name;}
     public Optional<Integer> getInt(String key) {return getType(key, Integer.class);}
@@ -34,7 +40,7 @@ public class SensorMeasure{
         }
     }
 
-    protected void putValue(String key, Object o){
+    public void putValue(String key, Object o){
         this.measures.putIfAbsent(key, o);
     }
 }

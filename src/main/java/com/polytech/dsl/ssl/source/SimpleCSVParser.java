@@ -56,7 +56,7 @@ public class SimpleCSVParser implements Source{
     private Object parseValue(String value) {
         try {
             return Integer.parseInt(value);
-        } catch (NumberFormatException e) {}
+        } catch (NumberFormatException e) { }
         try {
             return Double.parseDouble(value);
         } catch (NumberFormatException e) {}
