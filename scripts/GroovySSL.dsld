@@ -2,5 +2,17 @@ import java.lang.reflect.Method;
 
 contribute(currentType(subType('groovy.lang.Script'))) {
 
+	method type: Script, name: 'simulation', params: [name:String], doc: 'Create a new simulation'
+	method type: void, name: 'timerange', params: [start:Integer, end:Integer], doc: 'Parameter of the simulation'
+	method type: void, name: 'frequency', params: [freq:Integer], doc: 'Frequency of the simulation'
+
 	method type: Script, name: 'sensor', params: [name:String], doc: 'Create a new Sensor'
+	method type: void, name: 'law', params: [name:Object], doc: 'Add law to the given sensor'
+
+	method type: Script, name: 'generateSet', params: [sensor:Object, number:Integer], doc: 'Generate the set of sensor'
+
+	method type: Script, name: 'outputcsv', params: [destination:String], doc: 'Output csv mode'
+
+	method type: Script, name: 'run', params: [name:String], doc: 'Run Script and define its name'
+
 }

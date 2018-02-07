@@ -10,4 +10,8 @@ public class GroovyModel {
         // TODO
     }
 
+    public void createSimulation() {
+        // TODO
+    }
+
 }
