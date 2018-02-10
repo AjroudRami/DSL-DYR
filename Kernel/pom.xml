@@ -10,6 +10,12 @@
 
     <name>DSL :: SensorSimulation :: Kernel</name>
 
+    <parent>
+        <groupId>com.polytech.dsl.ssl.teamE</groupId>
+        <artifactId>SensorSimulation</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.influxdb/influxdb-java -->
         <dependency>

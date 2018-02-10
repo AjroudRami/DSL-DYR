@@ -9,6 +9,12 @@
     <version>1.0-SNAPSHOT</version>
 
     <name>DSL :: SensorSimulation :: GroovySim</name>
+    
+    <parent>
+        <groupId>com.polytech.dsl.ssl.teamE</groupId>
+        <artifactId>SensorSimulation</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all -->
