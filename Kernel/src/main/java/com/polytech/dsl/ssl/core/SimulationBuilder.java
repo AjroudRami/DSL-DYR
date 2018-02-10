@@ -1,22 +1,49 @@
-package com.polytech.dsl.ssl.core.regression;
+package com.polytech.dsl.ssl.core;
 
-import com.polytech.dsl.ssl.function.NoiseFunction;
-import com.polytech.dsl.ssl.function.SensorLaw;
+import com.polytech.dsl.ssl.core.regression.Regression;
+import com.polytech.dsl.ssl.core.regression.law.SensorLaw;
+import com.polytech.dsl.ssl.core.transform.NoiseFunction;
 import com.polytech.dsl.ssl.output.Output;
 import com.polytech.dsl.ssl.source.Source;
 import com.polytech.dsl.ssl.source.TimeSeries;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
+
 public class SimulationBuilder {
+
+    private static Logger LOGGER = Logger.getLogger(SimulationBuilder.class.getSimpleName());
 
     private Source source;
     private Output output;
+    private List<Sensor> sensors;
     private Regression regression;
     private NoiseFunction noiseFunction;
 
-    public SimulationBuilder(){}
+    private long startTime;
+    private long endTime;
+    private int frequency;
+
+    public SimulationBuilder(long startTime, long endTime, int frequency) {
+        LOGGER.info("Init simulation builder, " +
+                "startTime = " + startTime + "; endTime = " + endTime + "; frequency = " + frequency);
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.frequency = frequency;
+    }
+
+    public SimulationBuilder() {
+        this.sensors = new ArrayList<>();
+    }
 
     public SimulationBuilder setSource(Source src){
         this.source = src;
+        return this;
+    }
+
+    public SimulationBuilder addSensor(Sensor sensor) {
+        this.sensors.add(sensor);
         return this;
     }
 
@@ -45,7 +72,7 @@ public class SimulationBuilder {
         } else {
             //TODO
         }
-        output.write(timeSeries);
+        //output.write();
     }
 
 }

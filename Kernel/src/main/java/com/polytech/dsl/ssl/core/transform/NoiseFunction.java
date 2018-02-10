@@ -1,4 +1,4 @@
-package com.polytech.dsl.ssl.function;
+package com.polytech.dsl.ssl.core.transform;
 
 import com.polytech.dsl.ssl.source.SensorMeasure;
 

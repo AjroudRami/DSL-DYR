@@ -1,6 +1,7 @@
 package com.polytech.dsl.ssl.source;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
@@ -10,7 +11,6 @@ import java.util.stream.Stream;
 public class SimpleCSVParser implements Source{
 
     private static final String SEP = ";";
-    private static final String SENSOR_NAME = "sensor";
     private static final String TIME = "time";
 
     private Map<Integer, String> keyMap;
@@ -24,21 +24,20 @@ public class SimpleCSVParser implements Source{
     }
 
     public TimeSeries parse() throws IOException {
-        TimeSeries series = new TimeSeries();
+        TimeSeries series = new TimeSeries(file.getName());
         Stream<String> stream = Files.lines(Paths.get(file.toURI()));
         stream.limit(1).forEach(l -> setHeaders(l));
-        Files.lines(Paths.get(file.toURI())).skip(1).parallel().forEach(l -> series.putMeasure(parseLine(l)));
+        Files.lines(Paths.get(file.toURI())).skip(1).forEach(l -> series.putMeasure(parseLine(l)));
         return series;
     }
 
     private SensorMeasure parseLine(String line) {
         String[] values = line.split(SEP);
-        String name = values[reversedKeyMap.get(SENSOR_NAME)];
         Long time = Long.decode(values[reversedKeyMap.get(TIME)]);
 
-        SensorMeasure measure = new SensorMeasure(name, time);
+        SensorMeasure measure = new SensorMeasure(time);
         for(int i = 0; i < values.length; i++) {
-            if (i != reversedKeyMap.get(SENSOR_NAME) && i != reversedKeyMap.get(TIME)) {
+            if (i != reversedKeyMap.get(TIME)) {
                 measure.putValue(keyMap.get(i), parseValue(values[i]));
             }
         }

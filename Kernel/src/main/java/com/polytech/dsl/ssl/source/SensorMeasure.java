@@ -7,13 +7,11 @@ import java.util.logging.Logger;
 
 public class SensorMeasure{
 
-    private String name;
     private Long time;
     private Map<String, Object> measures;
     private static Logger LOGGER = Logger.getLogger(SensorMeasure.class.getName());
 
-    public SensorMeasure(String name, Long time){
-        this.name = name;
+    public SensorMeasure(Long time) {
         this.time = time;
         this.measures = new HashMap<>();
     }
@@ -25,7 +23,6 @@ public class SensorMeasure{
     }
 
     public Long time(){return this.time;}
-    public String sensorName(){return this.name;}
     public Optional<Integer> getInt(String key) {return getType(key, Integer.class);}
     public Optional<Double> getDouble(String key) {return getType(key, Double.class);}
     public Optional<Boolean> getBoolean(String key) {return getType(key, Boolean.class);}
@@ -42,5 +39,14 @@ public class SensorMeasure{
 
     public void putValue(String key, Object o){
         this.measures.putIfAbsent(key, o);
+    }
+
+    @Override
+    public String toString() {
+        String res = "SensorMeasure: time " + time;
+        for (String key : this.measures.keySet()) {
+            res += " | " + key + " : " + measures.get(key);
+        }
+        return res;
     }
 }

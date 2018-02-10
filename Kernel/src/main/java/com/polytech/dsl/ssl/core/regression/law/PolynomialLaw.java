@@ -1,26 +1,23 @@
-package com.polytech.dsl.ssl.core.regression;
+package com.polytech.dsl.ssl.core.regression.law;
 
 import Jama.Matrix;
-import com.polytech.dsl.ssl.function.SensorLaw;
 import com.polytech.dsl.ssl.source.SensorMeasure;
 
 public class PolynomialLaw implements SensorLaw {
 
-    private String sensorName;
     private Matrix betas;
     private String key;
     private int degree;
 
-    public PolynomialLaw(String sensorName, Matrix betas, String key, int degree) {
+    public PolynomialLaw(Matrix betas, String key, int degree) {
         this.betas = betas;
-        this.sensorName = sensorName;
         this.key = key;
         this.degree = degree;
     }
 
     @Override
     public SensorMeasure getMeasure(long time) {
-        SensorMeasure measure = new SensorMeasure(sensorName, time);
+        SensorMeasure measure = new SensorMeasure(time);
         double val = 0;
         for(int i = 0; i < degree; i++) {
             val += beta(i) * Math.pow(time, i);

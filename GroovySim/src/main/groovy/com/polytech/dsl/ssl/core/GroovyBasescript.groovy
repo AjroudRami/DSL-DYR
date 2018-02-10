@@ -18,6 +18,8 @@ abstract class GroovyBasescript extends Script {
                 timerange: { start, end ->
                     [
                             frequency: { freq ->
+
+                                ((GroovyBinding) this.getBinding()).getGroovyModel().initSimulation(start, end, freq)
                                 // TODO
                                 println start
                                 println end

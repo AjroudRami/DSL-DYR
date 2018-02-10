@@ -1,4 +1,4 @@
-package com.polytech.dsl.ssl.function;
+package com.polytech.dsl.ssl.core.regression.law;
 
 import com.polytech.dsl.ssl.source.SensorMeasure;
 
@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by Eroyas on 31/01/18.
