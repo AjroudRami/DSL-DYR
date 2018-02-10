@@ -7,14 +7,16 @@
     <groupId>com.polytech.dsl.ssl.teamE</groupId>
     <artifactId>GroovySim</artifactId>
     <version>1.0-SNAPSHOT</version>
-
+    <packaging>jar</packaging>
+    <properties>
+        <influxdb.version>2.8</influxdb.version>
+        <groovy.version>2.3.10</groovy.version>
+        <groovy.version.short>2.3</groovy.version.short>
+        <encoding>UTF-8</encoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
     <name>DSL :: SensorSimulation :: GroovySim</name>
-    
-    <parent>
-        <groupId>com.polytech.dsl.ssl.teamE</groupId>
-        <artifactId>SensorSimulation</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all -->
@@ -28,6 +30,11 @@
             <groupId>org.influxdb</groupId>
             <artifactId>influxdb-java</artifactId>
             <version>${influxdb.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.polytech.dsl.ssl.teamE</groupId>
+            <artifactId>Kernel</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

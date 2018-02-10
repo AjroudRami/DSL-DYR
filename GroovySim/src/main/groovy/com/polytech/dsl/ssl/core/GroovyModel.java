@@ -1,9 +1,11 @@
 package com.polytech.dsl.ssl.core;
 
+import com.polytech.dsl.ssl.core.regression.SimulationBuilder;
+
 public class GroovyModel {
 
     public GroovyModel() {
-        // TODO
+        SimulationBuilder builder;
     }
 
     public void createSensor() {

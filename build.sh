@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
 # Code
+echo "building project"
+cd Kernel
+./build.sh
+cd ..
 
-echo "Creating all containers"
-docker-compose up -d
+cd GroovySim
+./build.sh
+cd ..
