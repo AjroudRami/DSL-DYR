@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>dsl-team-e</groupId>
-    <artifactId>com.polytech.dsl.ssl</artifactId>
+    <groupId>com.polytech.dsl.ssl.teamE</groupId>
+    <artifactId>SensorSimulation</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>DSL :: SSL</name>
+    <name>DSL :: SensorSimulation</name>
 
     <properties>
         <groovy.version>2.4.13</groovy.version>
@@ -17,70 +17,8 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
-    <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all -->
-        <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
-            <version>${groovy.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.influxdb/influxdb-java -->
-        <dependency>
-            <groupId>org.influxdb</groupId>
-            <artifactId>influxdb-java</artifactId>
-            <version>${influxdb.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>gov.nist.math.jama</groupId>
-            <artifactId>gov.nist.math.jama</artifactId>
-            <version>1.1.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.0.0</version>
-        </dependency>
-    </dependencies>
-
-    <build>
-        <sourceDirectory>src/main/groovy</sourceDirectory>
-        <plugins>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <!-- 2.8.0-01 and later require maven-compiler-plugin 3.1 or higher -->
-                <version>3.1</version>
-                <configuration>
-                    <compilerId>groovy-eclipse-compiler</compilerId>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.codehaus.groovy</groupId>
-                        <artifactId>groovy-eclipse-compiler</artifactId>
-                        <version>2.9.1-01</version>
-                    </dependency>
-                    <!-- for 2.8.0-01 and later you must have an explicit dependency on
-                        groovy-eclipse-batch -->
-                    <dependency>
-                        <groupId>org.codehaus.groovy</groupId>
-                        <artifactId>groovy-eclipse-batch</artifactId>
-                        <version>2.3.7-01</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>com.polytech.dsl.ssl.main.GroovyMain</mainClass>
-                        </manifest>
-                    </archive>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
+    <modules>
+        <module>GroovySim</module>
+        <module>Kernel</module>
+    </modules>
 </project>
