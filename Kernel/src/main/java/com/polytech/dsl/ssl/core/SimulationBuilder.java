@@ -26,6 +26,7 @@ public class SimulationBuilder {
     private int frequency;
 
     public SimulationBuilder(long startTime, long endTime, int frequency) {
+        this();
         LOGGER.info("Init simulation builder, " +
                 "startTime = " + startTime + "; endTime = " + endTime + "; frequency = " + frequency);
         this.startTime = startTime;
