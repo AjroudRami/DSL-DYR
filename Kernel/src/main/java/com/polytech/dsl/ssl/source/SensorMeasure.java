@@ -32,6 +32,14 @@ public class SensorMeasure{
         return this.measures.get(key);
     }
 
+    public Map<String, Object> getMeasures() {
+        return measures;
+    }
+
+    public void setMeasures(Map<String, Object> measures) {
+        this.measures = measures;
+    }
+
     public <T> Optional<T> getType(String key, Class<T> cls) {
         try {
             return Optional.of(cls.cast( this.measures.get(key)));
