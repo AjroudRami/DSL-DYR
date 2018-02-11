@@ -3,6 +3,7 @@ package com.polytech.dsl.ssl;
 import com.polytech.dsl.ssl.core.Sensor;
 import com.polytech.dsl.ssl.core.SimulationBuilder;
 import com.polytech.dsl.ssl.core.regression.law.IdentityLaw;
+import com.polytech.dsl.ssl.core.regression.law.Random1D;
 import com.polytech.dsl.ssl.output.CSVWriter;
 import com.polytech.dsl.ssl.source.SimpleCSVParser;
 
@@ -15,6 +16,7 @@ public class Main {
         SimulationBuilder builder = new SimulationBuilder(0, 100, 1);
         Sensor sensor = new Sensor("sensorName");
         sensor.setLaw(new IdentityLaw(new SimpleCSVParser(new File(""))));
+        sensor.setLaw(new Random1D(0, 20));
         builder.addSensor(sensor);
         builder.setOutput(new CSVWriter());
     }
