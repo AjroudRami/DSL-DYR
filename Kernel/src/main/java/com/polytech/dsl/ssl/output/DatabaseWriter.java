@@ -2,15 +2,17 @@ package com.polytech.dsl.ssl.output;
 
 import com.polytech.dsl.ssl.source.SensorMeasure;
 import com.polytech.dsl.ssl.source.TimeSeries;
+import org.apache.log4j.Logger;
 import org.influxdb.InfluxDB;
 import org.influxdb.InfluxDBFactory;
 import org.influxdb.dto.BatchPoints;
 import org.influxdb.dto.Point;
-
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class DatabaseWriter implements Output{
+
+    private static final Logger LOGGER = Logger.getLogger(DatabaseWriter.class);
 
     private static final String DB_ADDRESS = "http://localhost:8086";
     private static final String DB_USERNAME = "root";
@@ -42,6 +44,7 @@ public class DatabaseWriter implements Output{
                             measure));
         }
 
+        LOGGER.info("Inserting " + series.getSensorName() + " in database " + DB_NAME);
         influxDB.write(batchPoints);
     }
 
@@ -51,6 +54,5 @@ public class DatabaseWriter implements Output{
                 .fields(measure.getMeasures())
                 .build();
     }
-
 
 }
