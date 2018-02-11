@@ -33,13 +33,8 @@ public class GroovyModel {
     public void createSensor(String name) {
         // Example : Sensor sensor = new Sensor("sensorName");
         this.sensor = new Sensor(name);
-        System.out.println("OKK !");
-        System.out.println(this.builder); // OK !!
-        System.out.println(sensor); // OK !!
-        this.builder.addSensor(sensor); // NOT NUL POINTER..
-        System.out.println("OK !");
+        this.builder.addSensor(sensor);
         this.binding.setVariable(name, sensor);
-        System.out.println("OK !!!!");
     }
 
     public void setIdentityLaw(String file) {
