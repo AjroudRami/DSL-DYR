@@ -34,6 +34,10 @@ public class Sensor {
         return this.name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     private SensorMeasure getSensorMeasure(long time, int i) {
         if (i < transformers.size()) {
             return this.transformers.get(i).transform(getSensorMeasure(time, i - 1));
