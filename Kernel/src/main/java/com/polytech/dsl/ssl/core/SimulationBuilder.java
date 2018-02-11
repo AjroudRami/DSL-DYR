@@ -6,6 +6,7 @@ import com.polytech.dsl.ssl.output.Output;
 import com.polytech.dsl.ssl.source.Source;
 import com.polytech.dsl.ssl.source.TimeSeries;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -63,15 +64,19 @@ public class SimulationBuilder {
 
     public void run() {
         for (Sensor sensor : sensors) {
-            runSensorSimulation(sensor);
+            try {
+                runSensorSimulation(sensor);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    private void runSensorSimulation(Sensor sensor) {
+    private void runSensorSimulation(Sensor sensor) throws IOException {
         TimeSeries series = new TimeSeries(sensor.getName());
         for (long time = startTime; time < endTime; time += 1000 / frequency) {
             series.putMeasure(sensor.getSensorMeasure(time));
         }
-        output.write(series, sensor.getName());
+        output.write(series);
     }
 }
