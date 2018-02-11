@@ -8,6 +8,11 @@ abstract class GroovyBasescript extends Script {
                 law: { sensorLaw ->
                     // TODO
                     println sensorLaw
+                },
+
+                fromcsv: { file ->
+                    // TODO
+                    println file
                 }
         ]
     }
@@ -33,7 +38,7 @@ abstract class GroovyBasescript extends Script {
     def generateSet(Object sensor, Integer number) {
         println sensor
         println number
-        // TODO
+
     }
 
     def outputcsv(String destination) {
