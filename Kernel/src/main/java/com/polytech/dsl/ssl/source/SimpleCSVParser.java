@@ -24,7 +24,7 @@ public class SimpleCSVParser implements Source{
     }
 
     public TimeSeries parse() throws IOException {
-        TimeSeries series = new TimeSeries(file.getName());
+        TimeSeries series = new TimeSeries(file.getName().split("\\.")[0]);
         Stream<String> stream = Files.lines(Paths.get(file.toURI()));
         stream.limit(1).forEach(l -> setHeaders(l));
         Files.lines(Paths.get(file.toURI())).skip(1).forEach(l -> series.putMeasure(parseLine(l)));

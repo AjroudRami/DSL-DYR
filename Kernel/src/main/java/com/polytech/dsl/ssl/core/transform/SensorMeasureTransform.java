@@ -2,7 +2,7 @@ package com.polytech.dsl.ssl.core.transform;
 
 import com.polytech.dsl.ssl.source.SensorMeasure;
 
-public interface NoiseFunction {
+public interface SensorMeasureTransform {
 
-    SensorMeasure makeNoise(SensorMeasure measure);
+    SensorMeasure transform(SensorMeasure measure);
 }

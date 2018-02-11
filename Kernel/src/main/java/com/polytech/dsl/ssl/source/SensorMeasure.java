@@ -28,6 +28,10 @@ public class SensorMeasure{
     public Optional<Boolean> getBoolean(String key) {return getType(key, Boolean.class);}
     public Optional<String> getString(String key) {return getType(key, String.class);}
 
+    public Object get(String key) {
+        return this.measures.get(key);
+    }
+
     public <T> Optional<T> getType(String key, Class<T> cls) {
         try {
             return Optional.of(cls.cast( this.measures.get(key)));

@@ -15,6 +15,7 @@ import Jama.QRDecomposition;
 import com.polytech.dsl.ssl.core.regression.law.PolynomialLaw;
 import com.polytech.dsl.ssl.core.regression.law.SensorLaw;
 import com.polytech.dsl.ssl.source.SensorMeasure;
+import com.polytech.dsl.ssl.source.Source;
 import com.polytech.dsl.ssl.source.TimeSeries;
 
 import java.util.Iterator;
@@ -229,7 +230,8 @@ public class PolynomialRegression implements Comparable<PolynomialRegression>, R
     }
 
     @Override
-    public SensorLaw getSensorLaw(TimeSeries timeSeries) {
+    public SensorLaw getSensorLaw(Source source) {
+        TimeSeries timeSeries = source.getTimeSeries();
         int degree = 3;
         Iterator<SensorMeasure> measureIterator = timeSeries.getMeasures().iterator();
         int nbMeasures = timeSeries.getMeasures().size();
@@ -250,8 +252,9 @@ public class PolynomialRegression implements Comparable<PolynomialRegression>, R
             i++;
         }
         SensorMeasure firstMeasure = ((SensorMeasure) timeSeries.getMeasures().toArray()[0]);
+        String sensorName = timeSeries.getSensorName();
         PolynomialRegression reg = new PolynomialRegression(x, y, degree);
-        SensorLaw law = new PolynomialLaw(reg.beta, firstMeasure.getLabels()[0], degree);
+        SensorLaw law = new PolynomialLaw(sensorName, reg.beta, firstMeasure.getLabels()[0], degree);
         return law;
     }
 }

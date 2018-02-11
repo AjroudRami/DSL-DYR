@@ -77,6 +77,11 @@ public class TimeSeries {
         this.data.putIfAbsent(measure.time(), measure);
     }
 
+    public String getSensorName() {
+        return this.sensorName;
+    }
+
+
     @Override
     public String toString() {
         String res = "TimeSeries: " + this.sensorName + "\n";

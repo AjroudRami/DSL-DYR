@@ -1,8 +1,7 @@
 package com.polytech.dsl.ssl.core;
 
 import com.polytech.dsl.ssl.core.regression.Regression;
-import com.polytech.dsl.ssl.core.regression.law.SensorLaw;
-import com.polytech.dsl.ssl.core.transform.NoiseFunction;
+import com.polytech.dsl.ssl.core.transform.SensorMeasureTransform;
 import com.polytech.dsl.ssl.output.Output;
 import com.polytech.dsl.ssl.source.Source;
 import com.polytech.dsl.ssl.source.TimeSeries;
@@ -19,7 +18,7 @@ public class SimulationBuilder {
     private Output output;
     private List<Sensor> sensors;
     private Regression regression;
-    private NoiseFunction noiseFunction;
+    private SensorMeasureTransform sensorMeasureTransform;
 
     private long startTime;
     private long endTime;
@@ -57,22 +56,22 @@ public class SimulationBuilder {
         return this;
     }
 
-    public SimulationBuilder addNoise(NoiseFunction noiseFunction) {
-        this.noiseFunction = noiseFunction;
+    public SimulationBuilder addNoise(SensorMeasureTransform sensorMeasureTransform) {
+        this.sensorMeasureTransform = sensorMeasureTransform;
         return this;
     }
 
-    public void run(long start, long end){
-        TimeSeries timeSeries = new TimeSeries();
-        if(regression != null) {
-            SensorLaw law = this.regression.getSensorLaw(this.source.getTimeSeries());
-            for (long current = 0; start < end; current ++) {
-                timeSeries.putMeasure(law.getMeasure(current));
-            }
-        } else {
-            //TODO
+    public void run() {
+        for (Sensor sensor : sensors) {
+            runSensorSimulation(sensor);
         }
-        //output.write();
     }
 
+    private void runSensorSimulation(Sensor sensor) {
+        TimeSeries series = new TimeSeries(sensor.getName());
+        for (long time = startTime; time < endTime; time += 1000 / frequency) {
+            series.putMeasure(sensor.getSensorMeasure(time));
+        }
+        output.write(series, sensor.getName());
+    }
 }
