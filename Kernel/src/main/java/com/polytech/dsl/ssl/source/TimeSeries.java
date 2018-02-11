@@ -74,7 +74,9 @@ public class TimeSeries {
      * @param measure
      */
     public void putMeasure(SensorMeasure measure){
-        this.data.putIfAbsent(measure.time(), measure);
+        if (measure != null) {
+            this.data.putIfAbsent(measure.time(), measure);
+        }
     }
 
     public String getSensorName() {

@@ -39,7 +39,7 @@ public class Sensor {
     }
 
     private SensorMeasure getSensorMeasure(long time, int i) {
-        if (i < transformers.size()) {
+        if (i > 0) {
             return this.transformers.get(i).transform(getSensorMeasure(time, i - 1));
         } else {
             return this.law.getMeasure(time);

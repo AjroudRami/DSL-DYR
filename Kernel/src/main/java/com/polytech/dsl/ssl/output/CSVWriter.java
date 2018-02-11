@@ -22,6 +22,7 @@ public class CSVWriter implements Output {
         f.createNewFile();
         PrintWriter pw = new PrintWriter(new FileWriter(f));
         Collection<SensorMeasure> measures = series.getMeasures();
+        if (measures.size() == 0) return;
         String[] labels = series.getMeasures().iterator().next().getLabels();
         writeHeader(pw, labels);
         for (SensorMeasure measure : measures) {
