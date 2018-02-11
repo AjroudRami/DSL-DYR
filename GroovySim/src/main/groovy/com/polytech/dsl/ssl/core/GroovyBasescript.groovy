@@ -8,32 +8,32 @@ abstract class GroovyBasescript extends Script {
         ((GroovyBinding) this.getBinding()).getGroovyModel().createSensor(name)
 
         [
-                randomlaw: { min, max ->
-                    println ("Apply random law with min : " + min + " and max : " + max)
-                    ((GroovyBinding) this.getBinding()).getGroovyModel().setRandomLaw(min, max)
-                },
+            randomlaw: { min, max ->
+                println ("Apply random law with min : " + min + " and max : " + max)
+                ((GroovyBinding) this.getBinding()).getGroovyModel().setRandomLaw(min, max)
+            },
 
-                fromcsv: { file ->
-                    println ("Apply replayed data from  : " + file)
-                    ((GroovyBinding) this.getBinding()).getGroovyModel().setIdentityLaw(file)
-                }
+            fromcsv: { file ->
+                println ("Apply replayed data from  : " + file)
+                ((GroovyBinding) this.getBinding()).getGroovyModel().setIdentityLaw(file)
+            }
         ]
     }
 
     def simulation(String name) {
         println("Create new simulation named : " + name)
         [
-                timerange: { start, end ->
-                    [
-                            frequency: { freq ->
-                                println ("Initialisation of the simulation with : "
-                                        + "\nstart value = " + start
-                                        + ",\nend value = " + end
-                                        + ",\nand frequency value = " + freq)
-                                ((GroovyBinding) this.getBinding()).getGroovyModel().initSimulation(start, end, freq)
-                            }
-                    ]
-                }
+            timerange: { start, end ->
+                [
+                        frequency: { freq ->
+                            println ("Initialisation of the simulation with : "
+                                    + "\nstart value = " + start
+                                    + ",\nend value = " + end
+                                    + ",\nand frequency value = " + freq)
+                            ((GroovyBinding) this.getBinding()).getGroovyModel().initSimulation(start, end, freq)
+                        }
+                ]
+            }
         ]
     }
 
@@ -45,8 +45,13 @@ abstract class GroovyBasescript extends Script {
     }
 
     def outputcsv(String destination) {
-        println("Destination and name of the result file : " + name)
+        println("Destination and name of the result file : " + destination)
         ((GroovyBinding) this.getBinding()).getGroovyModel().setOutput(destination)
+    }
+
+    def outputDB(String databaseName){
+        println("Storing result in database " + databaseName)
+        ((GroovyBinding) this.getBinding()).getGroovyModel().storeToDB(databaseName)
     }
 
     def run(String name) {

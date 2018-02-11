@@ -21,20 +21,32 @@ public class DatabaseWriter implements Output{
     private static final String DB_NAME = "SSL";
     private static final String DB_RETENTION = "default";
 
+    private String databaseName;
+
     private InfluxDB influxDB;
+
+    public DatabaseWriter(String databaseName){
+        this.influxDB = InfluxDBFactory.connect(DB_ADDRESS, DB_USERNAME, DB_PASSWORD);
+        this.databaseName = databaseName;
+    }
 
     public DatabaseWriter(){
         this.influxDB = InfluxDBFactory.connect(DB_ADDRESS, DB_USERNAME, DB_PASSWORD);
-        influxDB.createDatabase(DB_NAME);
-        influxDB.setDatabase(DB_NAME);
-        influxDB.createRetentionPolicy(DB_RETENTION, DB_NAME, "30d", 1, true);
+        this.databaseName = DB_NAME;
+        this.initDB();
+    }
+
+    private void initDB(){
+        influxDB.createDatabase(databaseName);
+        influxDB.setDatabase(databaseName);
+        influxDB.createRetentionPolicy(DB_RETENTION, databaseName, "30d", 1, true);
         influxDB.setRetentionPolicy(DB_RETENTION);
     }
 
     @Override
     public void write(TimeSeries series) throws IOException {
         BatchPoints batchPoints = BatchPoints
-                .database(DB_NAME)
+                .database(databaseName)
                 .retentionPolicy(DB_RETENTION)
                 .build();
 
@@ -44,7 +56,7 @@ public class DatabaseWriter implements Output{
                             measure));
         }
 
-        LOGGER.info("Inserting " + series.getSensorName() + " in database " + DB_NAME);
+        LOGGER.info("Inserting " + series.getSensorName() + " in database " + databaseName);
         influxDB.write(batchPoints);
     }
 

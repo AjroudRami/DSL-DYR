@@ -3,6 +3,7 @@ package com.polytech.dsl.ssl.core;
 import com.polytech.dsl.ssl.core.regression.law.IdentityLaw;
 import com.polytech.dsl.ssl.core.regression.law.Random1D;
 import com.polytech.dsl.ssl.output.CSVWriter;
+import com.polytech.dsl.ssl.output.DatabaseWriter;
 import com.polytech.dsl.ssl.source.SimpleCSVParser;
 
 import groovy.lang.Binding;
@@ -56,6 +57,14 @@ public class GroovyModel {
         this.builder.setOutput(new CSVWriter(/*destination*/));
     }
 
+    public void storeToDB(String databaseName){
+        if (databaseName.equals("")) {
+            this.builder.setOutput(new DatabaseWriter());
+        }else {
+            this.builder.setOutput(new DatabaseWriter(databaseName));
+        }
+    }
+
     public void generateSet(Sensor sensor, int number) {
         for (int i = 0; i < number; i++) {
             Sensor toCopyed = (Sensor) this.binding.getVariable(sensor.getName());
@@ -66,7 +75,7 @@ public class GroovyModel {
     }
 
     public void run() {
-        run();
+        builder.run();
     }
 
 }
