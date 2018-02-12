@@ -7,7 +7,7 @@ import com.polytech.dsl.ssl.source.SensorMeasure;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Sensor {
+public class Sensor implements Cloneable {
 
     private String name;
     private SensorLaw law;
@@ -16,6 +16,15 @@ public class Sensor {
     public Sensor(String name) {
         transformers = new ArrayList<>();
         this.name = name;
+    }
+
+    @Override
+    public Sensor clone() {
+        try {
+            return (Sensor)super.clone();
+        } catch (CloneNotSupportedException e) {
+            return this;
+        }
     }
 
     public void setLaw(SensorLaw law) {

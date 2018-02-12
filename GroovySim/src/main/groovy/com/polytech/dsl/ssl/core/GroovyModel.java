@@ -62,7 +62,7 @@ public class GroovyModel {
 
     public void generateSet(Sensor sensor, int number) {
         for (int i = 0; i < number; i++) {
-            Sensor toCopyed = (Sensor) this.binding.getVariable(sensor.getName());
+            Sensor toCopyed = ((Sensor) this.binding.getVariable(sensor.getName())).clone();
             toCopyed.setName(sensor.getName() + "_" + i);
             this.builder.addSensor(toCopyed);
             this.binding.setVariable(toCopyed.getName(), toCopyed);
