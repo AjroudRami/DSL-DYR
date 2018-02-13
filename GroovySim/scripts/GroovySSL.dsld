@@ -5,6 +5,7 @@ contribute(currentType(subType('groovy.lang.Script'))) {
 	method type: Script, name: 'simulation', params: [name:String], doc: 'Create a new simulation'
 	method type: void, name: 'timerange', params: [start:Integer, end:Integer], doc: 'Parameter of the simulation'
 	method type: void, name: 'frequency', params: [freq:Integer], doc: 'Frequency of the simulation'
+	method type: void, name: 'offset', params: [offset:Integer, unit:String], doc: 'Offset of the simulation'
 
 	method type: Script, name: 'sensor', params: [name:String], doc: 'Create a new Sensor'
 	method type: void, name: 'randomlaw', params: [min:Integer, max:Integer], doc: 'Add random law to the given sensor'
