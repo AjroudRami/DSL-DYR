@@ -34,15 +34,15 @@ abstract class GroovyBasescript extends Script {
         [
             timerange: { start, end ->
                 [
-                    offset: { offset, amount ->
+                    offset: { offset, unit ->
                         println ("Initialisation of the simulation with : "
                             + "\nstart value = " + start
                             + ",\nend value = " + end
-                            + ",\nand frequency value = " + offset
-                            + ",\nand amount = " + amount)
+                            + ",\nwith offset = " + offset
+                            + ",\nof unit = " + unit)
                         ((GroovyBinding) this.getBinding()).getGroovyModel().initSimulation(
                                 (String)start, (String)end,
-                                Offset.valueOf(((String)offset).toUpperCase()).getOffset(), (int)amount)
+                                (int)offset, Offset.valueOf(((String)unit).toUpperCase()).getOffset())
                     }
                 ]
             }

@@ -24,15 +24,15 @@ public class SimulationBuilder {
 
     private TimeRange range;
 
-    public SimulationBuilder(String start, String end, int offset, int amount){
+    public SimulationBuilder(String start, String end, int offset, int unit){
         this();
         this.range = new TimeRange()
                 .setStart(start)
                 .setEnd(end)
-                .setFrequency(offset, amount);
+                .setFrequency(unit, offset);
 
         LOGGER.info("Init simulation builder, " +
-                "startTime = " + start + "; endTime = " + end + "; frequency = " + amount);
+                "startTime = " + start + "; endTime = " + end + "; frequency = " + offset);
     }
 
     public SimulationBuilder() {

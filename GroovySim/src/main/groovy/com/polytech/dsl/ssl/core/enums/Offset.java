@@ -8,7 +8,7 @@ public enum Offset {
     SECOND(Calendar.SECOND),
     MINUTE(Calendar.MINUTE),
     HOUR(Calendar.HOUR),
-    DAYS(Calendar.DAY_OF_YEAR),
+    DAY(Calendar.DAY_OF_YEAR),
     WEEK(Calendar.WEEK_OF_YEAR),
     MONTH(Calendar.MONTH),
     YEAR(Calendar.YEAR);

@@ -5,15 +5,20 @@ import com.polytech.dsl.ssl.source.SensorMeasure;
 
 public class PolynomialLaw implements SensorLaw {
 
-    private String sensorName;
+    private static final String DEFAULT_LABEL = "f(t)";
     private Matrix betas;
     private String key;
     private int degree;
 
-    public PolynomialLaw(String sensorName, Matrix betas, String key, int degree) {
+    public PolynomialLaw(double[] coefs) {
+        this.betas = new Matrix(coefs, 1);
+        this.key = DEFAULT_LABEL;
+        this.degree = coefs.length;
+    }
+
+    public PolynomialLaw(Matrix betas, int degree) {
         this.betas = betas;
-        this.sensorName = sensorName;
-        this.key = key;
+        this.key = DEFAULT_LABEL;
         this.degree = degree;
     }
 
@@ -32,4 +37,6 @@ public class PolynomialLaw implements SensorLaw {
         if (Math.abs(betas.get(j, 0)) < 1E-4) return 0.0;
         return betas.get(j, 0);
     }
+
+
 }

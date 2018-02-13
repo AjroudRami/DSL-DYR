@@ -18,8 +18,8 @@ public class TimeRange {
     private Calendar end;
     private Calendar counter;
 
-    private int field;
-    private int amount;
+    private int unit;
+    private int offset;
 
     public TimeRange(){
         this.start = Calendar.getInstance();
@@ -54,8 +54,8 @@ public class TimeRange {
     }
 
     public TimeRange setFrequency(int field, int amount){
-        this.field = field;
-        this.amount = amount;
+        this.unit = field;
+        this.offset = amount;
         return this;
     }
 
@@ -64,7 +64,7 @@ public class TimeRange {
     }
 
     public void increment(){
-        this.counter.add(field,amount);
+        this.counter.add(unit, offset);
     }
 
     public String startToString(){
@@ -103,20 +103,20 @@ public class TimeRange {
         this.counter = counter;
     }
 
-    public int getField() {
-        return field;
+    public int getUnit() {
+        return unit;
     }
 
-    public void setField(int field) {
-        this.field = field;
+    public void setUnit(int unit) {
+        this.unit = unit;
     }
 
-    public int getAmount() {
-        return amount;
+    public int getOffset() {
+        return offset;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
+    public void setOffset(int offset) {
+        this.offset = offset;
     }
 
 }
