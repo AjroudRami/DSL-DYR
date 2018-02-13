@@ -5,13 +5,13 @@ import com.polytech.dsl.ssl.source.SensorMeasure;
 
 public class PolynomialLaw implements SensorLaw {
 
-    private static final String DEFAULT_LABEL = "f(t)";
+    public static final String DEFAULT_LABEL = "f(t)";
     private Matrix betas;
     private String key;
     private int degree;
 
     public PolynomialLaw(double[] coefs) {
-        this.betas = new Matrix(coefs, 1);
+        this.betas = new Matrix(coefs, coefs.length);
         this.key = DEFAULT_LABEL;
         this.degree = coefs.length;
     }
