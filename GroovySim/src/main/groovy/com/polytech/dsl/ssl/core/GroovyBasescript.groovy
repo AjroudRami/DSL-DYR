@@ -25,7 +25,9 @@ abstract class GroovyBasescript extends Script {
                 println ("Apply polynomial regression law from : " + file)
                 ((GroovyBinding) this.getBinding()).getGroovyModel().setPolynomialRegressionLaw(file)
             },
-
+            functionlaw:{ function ->
+                ((GroovyBinding) this.getBinding()).getGroovyModel().setFunctionLaw((String)function)
+            },
             fromcsv: { file ->
                 println ("Apply replayed data from  : " + file)
                 ((GroovyBinding) this.getBinding()).getGroovyModel().setIdentityLaw(file)
