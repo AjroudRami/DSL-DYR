@@ -1,6 +1,5 @@
 package com.polytech.dsl.ssl.core
 
-import Jama.Matrix
 import com.polytech.dsl.ssl.core.enums.Offset
 
 
@@ -17,9 +16,14 @@ abstract class GroovyBasescript extends Script {
                 ((GroovyBinding) this.getBinding()).getGroovyModel().setRandomLaw(min, max)
             },
 
-            polynomiallaw: { betas, key, degree ->
-                println ("Apply polynomial law with betas : " + betas + ", key : " + key + " and degree : " + degree)
-                ((GroovyBinding) this.getBinding()).getGroovyModel().setPolynomialLaw((Matrix)betas, key, degree)
+            polynomiallaw: { poly ->
+                println ("Apply polynomial law with law : " + poly)
+                ((GroovyBinding) this.getBinding()).getGroovyModel().setPolynomialLaw((double[])poly)
+            },
+
+            polynomialregressionlaw: { file ->
+                println ("Apply polynomial regression law from : " + file)
+                ((GroovyBinding) this.getBinding()).getGroovyModel().setPolynomialRegressionLaw(file)
             },
 
             fromcsv: { file ->
