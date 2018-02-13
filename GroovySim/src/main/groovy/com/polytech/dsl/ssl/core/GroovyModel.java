@@ -1,7 +1,7 @@
 package com.polytech.dsl.ssl.core;
 
-import Jama.Matrix;
 import com.polytech.dsl.ssl.core.regression.PolynomialRegression;
+import com.polytech.dsl.ssl.core.regression.law.FunctionLaw;
 import com.polytech.dsl.ssl.core.regression.law.IdentityLaw;
 import com.polytech.dsl.ssl.core.regression.law.PolynomialLaw;
 import com.polytech.dsl.ssl.core.regression.law.Random1D;
@@ -31,13 +31,12 @@ public class GroovyModel {
         this.builder = new SimulationBuilder();
     }
 
-    public void initSimulation(String start, String end, int offset, int amount) {
-        this.builder = new SimulationBuilder(start, end, offset, amount);
+    public void initSimulation(String start, String end, int offset, int unit){
+        this.builder = new SimulationBuilder(start,end,offset,unit);
     }
-
     public void initSimulation(long start, long end, int frequency) {
         // Example : SimulationBuilder builder = new SimulationBuilder(0, 100, 1);
-        // this.builder = new SimulationBuilder(System.currentTimeMillis() + start, System.currentTimeMillis()+end, frequency);
+//        this.builder = new SimulationBuilder(System.currentTimeMillis() + start, System.currentTimeMillis()+end, frequency);
     }
 
     public void createSensor(String name) {
@@ -65,6 +64,10 @@ public class GroovyModel {
     public void setPolynomialRegressionLaw(String file) {
         // Example : sensor.setLaw(new PolynomialRegression().getSensorLaw((Source) new File(file)));
         this.sensor.setLaw(new PolynomialRegression().getSensorLaw((Source) new File(file)));
+    }
+
+    public void setFunctionLaw(String function){
+        this.sensor.setLaw(new FunctionLaw(function));
     }
 
     public void setOutput(String destination) {
