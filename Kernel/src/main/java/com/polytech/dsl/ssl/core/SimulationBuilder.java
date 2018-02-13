@@ -77,10 +77,13 @@ public class SimulationBuilder {
     private void runSensorSimulation(Sensor sensor) throws IOException {
         TimeSeries series = new TimeSeries(sensor.getName());
         while (range.canIncrement()){
-            series.putMeasure(sensor.getSensorMeasure(range.getCounter().getTimeInMillis()));
+            if (sensorMeasureTransform != null) {
+                series.putMeasure(sensor.getSensorMeasure(range.getCounter().getTimeInMillis()));
+            } else {
+                series.putMeasure(sensor.getSensorMeasure(range.getCounter().getTimeInMillis()));
+            }
             range.increment();
         }
-
         output.write(series);
     }
 }
