@@ -5,6 +5,7 @@ import com.polytech.dsl.ssl.core.transform.SensorMeasureTransform;
 import com.polytech.dsl.ssl.output.Output;
 import com.polytech.dsl.ssl.source.Source;
 import com.polytech.dsl.ssl.source.TimeSeries;
+import com.polytech.dsl.ssl.util.TimeRange;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,17 +22,17 @@ public class SimulationBuilder {
     private Regression regression;
     private SensorMeasureTransform sensorMeasureTransform;
 
-    private long startTime;
-    private long endTime;
-    private int frequency;
+    private TimeRange range;
 
-    public SimulationBuilder(long startTime, long endTime, int frequency) {
+    public SimulationBuilder(String start, String end, int offset, int amount){
         this();
+        this.range = new TimeRange()
+                .setStart(start)
+                .setEnd(end)
+                .setFrequency(offset, amount);
+
         LOGGER.info("Init simulation builder, " +
-                "startTime = " + startTime + "; endTime = " + endTime + "; frequency = " + frequency);
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.frequency = frequency;
+                "startTime = " + start + "; endTime = " + end + "; frequency = " + amount);
     }
 
     public SimulationBuilder() {
@@ -75,9 +76,11 @@ public class SimulationBuilder {
 
     private void runSensorSimulation(Sensor sensor) throws IOException {
         TimeSeries series = new TimeSeries(sensor.getName());
-        for (long time = startTime; time < endTime; time += 1000 / frequency) {
-            series.putMeasure(sensor.getSensorMeasure(time));
+        while (range.canIncrement()){
+            series.putMeasure(sensor.getSensorMeasure(range.getCounter().getTimeInMillis()));
+            range.increment();
         }
+
         output.write(series);
     }
 }

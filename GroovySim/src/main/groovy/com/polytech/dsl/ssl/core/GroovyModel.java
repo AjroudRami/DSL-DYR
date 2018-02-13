@@ -25,9 +25,12 @@ public class GroovyModel {
         this.builder = new SimulationBuilder();
     }
 
+    public void initSimulation(String start, String end, int offset, int amount){
+        this.builder = new SimulationBuilder(start,end,offset,amount);
+    }
     public void initSimulation(long start, long end, int frequency) {
         // Example : SimulationBuilder builder = new SimulationBuilder(0, 100, 1);
-        this.builder = new SimulationBuilder(System.currentTimeMillis() + start, System.currentTimeMillis()+end, frequency);
+//        this.builder = new SimulationBuilder(System.currentTimeMillis() + start, System.currentTimeMillis()+end, frequency);
     }
 
     public void createSensor(String name) {
