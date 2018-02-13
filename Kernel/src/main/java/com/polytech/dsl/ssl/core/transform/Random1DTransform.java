@@ -3,13 +3,14 @@ package com.polytech.dsl.ssl.core.transform;
 import com.polytech.dsl.ssl.source.SensorMeasure;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.Random;
 
 public class Random1DTransform implements SensorMeasureTransform {
 
-    private int amplitude;
+    private double amplitude;
 
-    public Random1DTransform(int amplitude) {
+    public Random1DTransform(double amplitude) {
         this.amplitude = amplitude;
     }
 
@@ -19,9 +20,12 @@ public class Random1DTransform implements SensorMeasureTransform {
         Arrays.stream(measure.getLabels()).forEach(
                 label -> {
                     Random random = new Random();
-                    int value = measure.getInt(label).get();
-                    int noiseValue = value + random.nextInt() * amplitude;
-                    res.putValue(label, noiseValue);
+                    Optional<Integer> opt = measure.getInt(label);
+                    if (opt.isPresent()) {
+                        double value = measure.getInt(label).get();
+                        double noiseValue = value + random.nextDouble() * amplitude;
+                        res.putValue(label, noiseValue);
+                    }
                 }
         );
         return res;
