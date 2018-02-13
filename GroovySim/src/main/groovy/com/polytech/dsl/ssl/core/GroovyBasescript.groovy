@@ -1,5 +1,8 @@
 package com.polytech.dsl.ssl.core
 
+import com.polytech.dsl.ssl.core.enums.Offset
+
+
 abstract class GroovyBasescript extends Script {
 
     def sensor(String name) {
@@ -25,13 +28,16 @@ abstract class GroovyBasescript extends Script {
         [
             timerange: { start, end ->
                 [
-                        frequency: { freq ->
-                            println ("Initialisation of the simulation with : "
-                                    + "\nstart value = " + start
-                                    + ",\nend value = " + end
-                                    + ",\nand frequency value = " + freq)
-                            ((GroovyBinding) this.getBinding()).getGroovyModel().initSimulation(start, end, freq)
-                        }
+                    offset: { offset, amount ->
+                        println ("Initialisation of the simulation with : "
+                            + "\nstart value = " + start
+                            + ",\nend value = " + end
+                            + ",\nand frequency value = " + offset
+                            + ",\nand amount = " + amount)
+                        ((GroovyBinding) this.getBinding()).getGroovyModel().initSimulation(
+                                (String)start, (String)end,
+                                Offset.valueOf(((String)offset).toUpperCase()).getOffset(), (int)amount)
+                    }
                 ]
             }
         ]
@@ -64,5 +70,6 @@ abstract class GroovyBasescript extends Script {
         // TODO ??
         return null
     }
+
 
 }
