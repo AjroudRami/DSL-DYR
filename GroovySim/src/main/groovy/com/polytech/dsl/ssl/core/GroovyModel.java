@@ -5,6 +5,7 @@ import com.polytech.dsl.ssl.core.regression.PolynomialRegression;
 import com.polytech.dsl.ssl.core.regression.law.IdentityLaw;
 import com.polytech.dsl.ssl.core.regression.law.PolynomialLaw;
 import com.polytech.dsl.ssl.core.regression.law.Random1D;
+import com.polytech.dsl.ssl.core.transform.PartialRandom1DTransform;
 import com.polytech.dsl.ssl.core.transform.Random1DTransform;
 import com.polytech.dsl.ssl.output.CSVWriter;
 import com.polytech.dsl.ssl.output.DatabaseWriter;
@@ -71,9 +72,14 @@ public class GroovyModel {
         this.builder.setOutput(new CSVWriter(/*destination*/));
     }
 
-    public void addNoise(int amplitude) {
+    public void addNoise(double amplitude) {
         // Example : builder.addNoise(new Random1DTransform(10));
         this.builder.addNoise(new Random1DTransform(amplitude));
+    }
+
+    public void addPartialNoise(double probability, double amplitude) {
+        // Example : builder.addNoise(new PartialRandom1DTransform(probability, amplitude));
+        this.builder.addNoise(new PartialRandom1DTransform(probability, amplitude));
     }
 
     public void storeToDB(String databaseName){

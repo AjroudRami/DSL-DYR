@@ -14,7 +14,8 @@ contribute(currentType(subType('groovy.lang.Script'))) {
 
 	method type: Script, name: 'generateSet', params: [sensor:Object, number:Integer], doc: 'Generate the set of sensor'
 
-	method type: Script, name: 'noise', params: [amplitude:Integer], doc: 'Add noise to the simulation'
+	method type: Script, name: 'noise', params: [amplitude:double], doc: 'Add noise to the simulation'
+	method type: Script, name: 'partialnoise', params: [probability:double, amplitude:double], doc: 'Add partial noise to the simulation'
 
 	method type: Script, name: 'outputcsv', params: [destination:String], doc: 'Output csv mode'
 

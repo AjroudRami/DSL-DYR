@@ -60,9 +60,14 @@ abstract class GroovyBasescript extends Script {
                 number)
     }
 
-    def noise(Integer amplitude) {
+    def noise(double amplitude) {
         println("Noise applied to the simulation with amplitude of : " + amplitude)
         ((GroovyBinding) this.getBinding()).getGroovyModel().addNoise(amplitude)
+    }
+
+    def partialnoise(double probability, double amplitude) {
+        println("Noise applied to the simulation with amplitude of : " + amplitude + " and probability of " + probability)
+        ((GroovyBinding) this.getBinding()).getGroovyModel().addPartialNoise(probability, amplitude)
     }
 
     def outputcsv(String destination) {
