@@ -16,6 +16,16 @@ abstract class GroovyBasescript extends Script {
                 ((GroovyBinding) this.getBinding()).getGroovyModel().setRandomLaw(min, max)
             },
 
+            polynomiallaw: { poly ->
+                println ("Apply polynomial law with law : " + poly)
+                ((GroovyBinding) this.getBinding()).getGroovyModel().setPolynomialLaw((double[])poly)
+            },
+
+            polynomialregressionlaw: { file ->
+                println ("Apply polynomial regression law from : " + file)
+                ((GroovyBinding) this.getBinding()).getGroovyModel().setPolynomialRegressionLaw(file)
+            },
+
             fromcsv: { file ->
                 println ("Apply replayed data from  : " + file)
                 ((GroovyBinding) this.getBinding()).getGroovyModel().setIdentityLaw(file)

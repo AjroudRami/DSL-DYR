@@ -1,11 +1,15 @@
 package com.polytech.dsl.ssl.core;
 
+import Jama.Matrix;
+import com.polytech.dsl.ssl.core.regression.PolynomialRegression;
 import com.polytech.dsl.ssl.core.regression.law.IdentityLaw;
+import com.polytech.dsl.ssl.core.regression.law.PolynomialLaw;
 import com.polytech.dsl.ssl.core.regression.law.Random1D;
 import com.polytech.dsl.ssl.output.CSVWriter;
 import com.polytech.dsl.ssl.output.DatabaseWriter;
 import com.polytech.dsl.ssl.source.SimpleCSVParser;
 
+import com.polytech.dsl.ssl.source.Source;
 import groovy.lang.Binding;
 
 import java.io.File;
@@ -25,12 +29,13 @@ public class GroovyModel {
         this.builder = new SimulationBuilder();
     }
 
-    public void initSimulation(String start, String end, int offset, int amount){
-        this.builder = new SimulationBuilder(start,end,offset,amount);
+    public void initSimulation(String start, String end, int offset, int amount) {
+        this.builder = new SimulationBuilder(start, end, offset, amount);
     }
+
     public void initSimulation(long start, long end, int frequency) {
         // Example : SimulationBuilder builder = new SimulationBuilder(0, 100, 1);
-//        this.builder = new SimulationBuilder(System.currentTimeMillis() + start, System.currentTimeMillis()+end, frequency);
+        // this.builder = new SimulationBuilder(System.currentTimeMillis() + start, System.currentTimeMillis()+end, frequency);
     }
 
     public void createSensor(String name) {
@@ -48,6 +53,16 @@ public class GroovyModel {
     public void setRandomLaw(int min, int max) {
         // Example sensor.setLaw(new Random1D(0, 20));
         this.sensor.setLaw(new Random1D(min, max));
+    }
+
+    public void setPolynomialLaw(double[] poly) {
+        // Example sensor.setLaw(new PolynomialLaw([4, -3, 2]));
+        this.sensor.setLaw(new PolynomialLaw(poly));
+    }
+
+    public void setPolynomialRegressionLaw(String file) {
+        // Example : sensor.setLaw(new PolynomialRegression().getSensorLaw((Source) new File(file)));
+        this.sensor.setLaw(new PolynomialRegression().getSensorLaw((Source) new File(file)));
     }
 
     public void setOutput(String destination) {

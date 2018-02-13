@@ -8,6 +8,8 @@ contribute(currentType(subType('groovy.lang.Script'))) {
 
 	method type: Script, name: 'sensor', params: [name:String], doc: 'Create a new Sensor'
 	method type: void, name: 'randomlaw', params: [min:Integer, max:Integer], doc: 'Add random law to the given sensor'
+	method type: void, name: 'polynomiallaw', params: [poly:String], doc: 'Add polynomial law to the given sensor'
+	method type: void, name: 'polynomialregressionlaw', params: [file:String], doc: 'Add polynomial regression law from csv'
 	method type: void, name: 'fromcsv', params: [file:String], doc: 'Add replay data from csv'
 
 	method type: Script, name: 'generateSet', params: [sensor:Object, number:Integer], doc: 'Generate the set of sensor'
