@@ -255,8 +255,6 @@ public class PolynomialRegression implements Comparable<PolynomialRegression>, R
             x[i] = doubleTime;
             i++;
         }
-        SensorMeasure firstMeasure = ((SensorMeasure) timeSeries.getMeasures().toArray()[0]);
-        String sensorName = timeSeries.getSensorName();
         PolynomialRegression reg = new PolynomialRegression(x, y, degree);
         this.beta = reg.beta;
         this.degree = reg.degree;
