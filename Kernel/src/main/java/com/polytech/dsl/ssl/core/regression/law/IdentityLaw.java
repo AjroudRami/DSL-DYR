@@ -12,8 +12,17 @@ public class IdentityLaw implements SensorLaw {
         this.timeSeries = source.getTimeSeries();
     }
 
+    public IdentityLaw(TimeSeries timeSeries) {
+        this.timeSeries = timeSeries;
+    }
+
     @Override
     public SensorMeasure getMeasure(long time) {
         return timeSeries.getMeasure(time);
+    }
+
+    @Override
+    public SensorLaw cleanCopy() {
+        return new IdentityLaw(this.timeSeries);
     }
 }

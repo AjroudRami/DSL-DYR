@@ -33,6 +33,11 @@ public class PolynomialLaw implements SensorLaw {
         return measure;
     }
 
+    @Override
+    public SensorLaw cleanCopy() {
+        return new PolynomialLaw(this.betas, this.degree);
+    }
+
     private double beta(int j){
         if (Math.abs(betas.get(j, 0)) < 1E-4) return 0.0;
         return betas.get(j, 0);

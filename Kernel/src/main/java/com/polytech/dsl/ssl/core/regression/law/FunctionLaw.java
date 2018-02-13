@@ -8,4 +8,9 @@ public class FunctionLaw implements SensorLaw{
     public SensorMeasure getMeasure(long time) {
         return null;
     }
+
+    @Override
+    public SensorLaw cleanCopy() {
+        return null;
+    }
 }

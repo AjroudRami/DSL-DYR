@@ -76,6 +76,7 @@ public class SimulationBuilder {
 
     private void runSensorSimulation(Sensor sensor) throws IOException {
         TimeSeries series = new TimeSeries(sensor.getName());
+        range.restart();
         while (range.canIncrement()){
             if (sensorMeasureTransform != null) {
                 series.putMeasure(sensor.getSensorMeasure(range.getCounter().getTimeInMillis()));

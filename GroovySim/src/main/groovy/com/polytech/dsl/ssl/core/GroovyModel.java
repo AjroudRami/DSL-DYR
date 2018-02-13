@@ -1,6 +1,5 @@
 package com.polytech.dsl.ssl.core;
 
-import Jama.Matrix;
 import com.polytech.dsl.ssl.core.regression.PolynomialRegression;
 import com.polytech.dsl.ssl.core.regression.law.IdentityLaw;
 import com.polytech.dsl.ssl.core.regression.law.PolynomialLaw;
@@ -10,7 +9,6 @@ import com.polytech.dsl.ssl.core.transform.Random1DTransform;
 import com.polytech.dsl.ssl.output.CSVWriter;
 import com.polytech.dsl.ssl.output.DatabaseWriter;
 import com.polytech.dsl.ssl.source.SimpleCSVParser;
-
 import com.polytech.dsl.ssl.source.Source;
 import groovy.lang.Binding;
 
@@ -92,7 +90,7 @@ public class GroovyModel {
 
     public void generateSet(Sensor sensor, int number) {
         for (int i = 0; i < number; i++) {
-            Sensor toCopyed = ((Sensor) this.binding.getVariable(sensor.getName())).clone();
+            Sensor toCopyed = sensor.clone();
             toCopyed.setName(sensor.getName() + "_" + i);
             this.builder.addSensor(toCopyed);
             this.binding.setVariable(toCopyed.getName(), toCopyed);

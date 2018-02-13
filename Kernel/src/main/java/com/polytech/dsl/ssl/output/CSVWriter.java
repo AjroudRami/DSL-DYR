@@ -8,10 +8,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collection;
+import java.util.logging.Logger;
 
 public class CSVWriter implements Output {
 
     private static String SEP = ";";
+    private static Logger logger = Logger.getLogger(CSVWriter.class.getName());
 
 
     @Override

@@ -18,15 +18,6 @@ public class Sensor implements Cloneable {
         this.name = name;
     }
 
-    @Override
-    public Sensor clone() {
-        try {
-            return (Sensor)super.clone();
-        } catch (CloneNotSupportedException e) {
-            return this;
-        }
-    }
-
     public void setLaw(SensorLaw law) {
         this.law = law;
     }
@@ -53,5 +44,13 @@ public class Sensor implements Cloneable {
         } else {
             return this.law.getMeasure(time);
         }
+    }
+
+    @Override
+    public Sensor clone() {
+        Sensor sensor = new Sensor(this.name);
+        sensor.transformers = this.transformers;
+        sensor.law = this.law.cleanCopy();
+        return sensor;
     }
 }

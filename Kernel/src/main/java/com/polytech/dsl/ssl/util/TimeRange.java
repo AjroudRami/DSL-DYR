@@ -119,4 +119,7 @@ public class TimeRange {
         this.offset = offset;
     }
 
+    public void restart() {
+        this.counter.setTime(this.start.getTime());
+    }
 }

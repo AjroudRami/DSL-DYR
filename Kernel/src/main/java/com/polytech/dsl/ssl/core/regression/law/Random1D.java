@@ -27,6 +27,11 @@ public class Random1D extends RandomLaw {
         }
     }
 
+    @Override
+    public SensorLaw cleanCopy() {
+        return new Random1D(this.low, this.high);
+    }
+
 
     private int getRandomValue() {
         Random random = new Random();
