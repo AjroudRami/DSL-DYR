@@ -262,7 +262,7 @@ public class PolynomialRegression implements Comparable<PolynomialRegression>, R
         this.degree = reg.degree;
         this.sse = reg.sse;
         this.sst = reg.sst;
-        SensorLaw law = new PolynomialLaw(sensorName, reg.beta, firstMeasure.getLabels()[0], degree);
+        SensorLaw law = new PolynomialLaw(reg.beta, degree);
         return law;
     }
 }
