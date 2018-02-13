@@ -60,6 +60,11 @@ abstract class GroovyBasescript extends Script {
                 number)
     }
 
+    def noise(Integer amplitude) {
+        println("Noise applied to the simulation with amplitude of : " + amplitude)
+        ((GroovyBinding) this.getBinding()).getGroovyModel().addNoise(amplitude)
+    }
+
     def outputcsv(String destination) {
         println("Destination and name of the result file : " + destination)
         ((GroovyBinding) this.getBinding()).getGroovyModel().setOutput(destination)
