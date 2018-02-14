@@ -35,6 +35,7 @@ public class CSVWriter implements Output {
 
     private void writeHeader(PrintWriter pw, String[] labels) {
         String header = "";
+        header += "time" +SEP;
         for (int i = 0; i < labels.length; i++) {
             header += labels[i];
             if (i != labels.length - 1) {
@@ -47,6 +48,7 @@ public class CSVWriter implements Output {
 
     private void writeLine(PrintWriter pw, SensorMeasure measure, String[] labels) {
         String line = "";
+        line += measure.time() + SEP;
         for (int i = 0; i < labels.length; i++) {
             line += measure.get(labels[i]).toString();
             if (i != labels.length - 1) {
