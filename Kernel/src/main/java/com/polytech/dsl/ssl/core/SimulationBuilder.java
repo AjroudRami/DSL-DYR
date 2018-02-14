@@ -79,7 +79,7 @@ public class SimulationBuilder {
         range.restart();
         while (range.canIncrement()){
             if (sensorMeasureTransform != null) {
-                series.putMeasure(sensor.getSensorMeasure(range.getCounter().getTimeInMillis()));
+                series.putMeasure(sensorMeasureTransform.transform(sensor.getSensorMeasure(range.getCounter().getTimeInMillis())));
             } else {
                 series.putMeasure(sensor.getSensorMeasure(range.getCounter().getTimeInMillis()));
             }
