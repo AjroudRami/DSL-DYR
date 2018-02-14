@@ -9,7 +9,7 @@ import java.util.function.Function;
 
 public class FunctionLaw implements SensorLaw{
 
-    private static final String DEFAULT_KEY = "calculate";
+    private static final String DEFAULT_KEY = "function";
 
     private ScriptEngine engine ;
     private String function;
@@ -35,6 +35,6 @@ public class FunctionLaw implements SensorLaw{
 
     @Override
     public SensorLaw cleanCopy() {
-        return null;
+        return new FunctionLaw(this.function);
     }
 }
