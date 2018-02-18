@@ -1,5 +1,7 @@
 package com.polytech.dsl.ssl.source;
 
+import org.apache.log4j.Logger;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -9,6 +11,9 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 public class SimpleCSVParser implements Source{
+
+
+    private static final Logger LOGGER = Logger.getLogger(SimpleCSVParser.class);
 
     private static final String SEP = ";";
     private static final String TIME = "time";
@@ -70,7 +75,8 @@ public class SimpleCSVParser implements Source{
         try {
             return this.parse();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.info("Error when parsing file. Source not found at " + file.getPath());
+            System.exit(1);
             return new TimeSeries();
         }
     }
