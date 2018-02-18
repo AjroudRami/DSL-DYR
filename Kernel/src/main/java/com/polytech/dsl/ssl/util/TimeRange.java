@@ -35,8 +35,8 @@ public class TimeRange {
             try {
                 this.start.setTime(sdf.parse(start));
             } catch (ParseException e) {
-                LOGGER.info("Error parsing start date");
-                e.printStackTrace();
+                LOGGER.info("Error parsing start date. Start date should follow this format : dd-MM-yyyy HH:mm:ss");
+                System.exit(0);
             }
         }
         this.counter.setTime(this.start.getTime());
@@ -47,8 +47,8 @@ public class TimeRange {
         try {
             this.end.setTime(sdf.parse(end));
         } catch (ParseException e) {
-            LOGGER.info("Error parsing end date" );
-            e.printStackTrace();
+            LOGGER.info("Error parsing end date. End date should follow this format : dd-MM-yyyy HH:mm:ss" );
+            System.exit(0);
         }
         return this;
     }
