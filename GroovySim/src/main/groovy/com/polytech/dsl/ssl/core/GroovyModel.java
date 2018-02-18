@@ -30,8 +30,8 @@ public class GroovyModel {
         this.builder = new SimulationBuilder();
     }
 
-    public void initSimulation(String start, String end, int offset, int unit){
-        this.builder = new SimulationBuilder(start,end,offset,unit);
+    public void initSimulation(String start, String end, int frequency, int unit){
+        this.builder = new SimulationBuilder(start,end,frequency,unit);
     }
     public void initSimulation(long start, long end, int frequency) {
         // Example : SimulationBuilder builder = new SimulationBuilder(0, 100, 1);

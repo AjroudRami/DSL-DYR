@@ -1,6 +1,6 @@
 package com.polytech.dsl.ssl.core
 
-import com.polytech.dsl.ssl.core.enums.Offset
+import com.polytech.dsl.ssl.core.enums.FrequencyUnit
 
 
 abstract class GroovyBasescript extends Script {
@@ -42,15 +42,15 @@ abstract class GroovyBasescript extends Script {
         [
             timerange: { start, end ->
                 [
-                    offset: { offset, unit ->
+                    frequency: { frequency, unit ->
                         println ("Initialisation of the simulation with : "
                             + "\nstart value = " + start
                             + ",\nend value = " + end
-                            + ",\nwith offset = " + offset
+                            + ",\nwith offset = " + frequency
                             + ",\nof unit = " + unit)
                         ((GroovyBinding) this.getBinding()).getGroovyModel().initSimulation(
                                 (String)start, (String)end,
-                                (int)offset, Offset.valueOf(((String)unit).toUpperCase()).getOffset())
+                                (int)frequency, FrequencyUnit.valueOf(((String)unit).toUpperCase()).getOffset())
                     }
                 ]
             }

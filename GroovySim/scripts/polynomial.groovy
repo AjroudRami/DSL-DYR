@@ -1,4 +1,4 @@
-simulation "simulation" timerange "now", "14-02-2018 23:59:00" offset 1,"SECOND"
+simulation "simulation" timerange "now", "14-02-2018 23:59:00" frequency 1,"SECOND"
 
 sensor "polynomialised" polynomiallaw "[4, -3, 2]"
 

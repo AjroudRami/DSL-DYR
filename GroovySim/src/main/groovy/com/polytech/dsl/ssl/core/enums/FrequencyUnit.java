@@ -2,7 +2,7 @@ package com.polytech.dsl.ssl.core.enums;
 
 import java.util.Calendar;
 
-public enum Offset {
+public enum FrequencyUnit {
 
     MILLISECOND(Calendar.MILLISECOND),
     SECOND(Calendar.SECOND),
@@ -16,7 +16,7 @@ public enum Offset {
 
     private int offset;
 
-    Offset(int offset){
+    FrequencyUnit(int offset){
         this.offset = offset;
     }
 
