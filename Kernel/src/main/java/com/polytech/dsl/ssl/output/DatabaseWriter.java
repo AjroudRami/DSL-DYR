@@ -44,7 +44,7 @@ public class DatabaseWriter implements Output{
     }
 
     @Override
-    public void write(TimeSeries series) throws IOException {
+    public void write(TimeSeries series) {
         BatchPoints batchPoints = BatchPoints
                 .database(databaseName)
                 .retentionPolicy(DB_RETENTION)
