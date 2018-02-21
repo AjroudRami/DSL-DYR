@@ -38,6 +38,7 @@ run "Sensor Simulation Lab (SSL)"
 ## Running the code
 
 Prerequisite 
+
 In order to build and execute the project, please have the following item installed 
 - Maven 
 - Java 8
