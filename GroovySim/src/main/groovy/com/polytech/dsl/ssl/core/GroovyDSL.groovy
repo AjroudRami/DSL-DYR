@@ -1,10 +1,12 @@
 package com.polytech.dsl.ssl.core
 
+import org.apache.log4j.Logger
 import org.codehaus.groovy.control.CompilerConfiguration
 import org.codehaus.groovy.control.customizers.SecureASTCustomizer
 
 class GroovyDSL {
 
+    private static final Logger LOGGER = Logger.getLogger(GroovyDSL.class);
     private GroovyShell shell
     private CompilerConfiguration configuration
     private GroovyBinding binding
@@ -56,7 +58,13 @@ class GroovyDSL {
 
         binding.setScript(script)
         script.setBinding(binding)
-
-        script.run()
+        try {
+            script.run()
+        }catch (MissingMethodException e){
+            LOGGER.info("Error when parsing script")
+            LOGGER.info(e.message)
+            LOGGER.info("Program not compiled")
+            System.exit(0)
+        }
     }
 }

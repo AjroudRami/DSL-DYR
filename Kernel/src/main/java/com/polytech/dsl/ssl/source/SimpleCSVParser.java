@@ -76,6 +76,7 @@ public class SimpleCSVParser implements Source{
             return this.parse();
         } catch (IOException e) {
             LOGGER.info("Error when parsing file. Source not found at " + file.getPath());
+            LOGGER.info("Program not compiled");
             System.exit(1);
             return new TimeSeries();
         }

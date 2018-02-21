@@ -36,6 +36,7 @@ public class TimeRange {
                 this.start.setTime(sdf.parse(start));
             } catch (ParseException e) {
                 LOGGER.info("Error parsing start date. Start date should follow this format : dd-MM-yyyy HH:mm:ss");
+                LOGGER.info("Program not compiled");
                 System.exit(0);
             }
         }
@@ -48,6 +49,7 @@ public class TimeRange {
             this.end.setTime(sdf.parse(end));
         } catch (ParseException e) {
             LOGGER.info("Error parsing end date. End date should follow this format : dd-MM-yyyy HH:mm:ss" );
+            LOGGER.info("Program not compiled");
             System.exit(0);
         }
         return this;
