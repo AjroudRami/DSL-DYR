@@ -64,6 +64,16 @@ abstract class GroovyBasescript extends Script {
                 number)
     }
 
+    def aggregate(String[] sensors) {
+        println ("Agregate sensors")
+        [
+            to: { name ->
+                println ("Agregation will be in : " + name)
+                ((GroovyBinding) this.getBinding()).getGroovyModel().aggregate(sensors, name)
+            }
+        ]
+    }
+
     def noise(double amplitude) {
         println("Noise applied to the simulation with amplitude of : " + amplitude)
         ((GroovyBinding) this.getBinding()).getGroovyModel().addNoise(amplitude)

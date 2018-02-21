@@ -15,6 +15,7 @@ import groovy.lang.Binding;
 import org.apache.log4j.Logger;
 
 import java.io.File;
+import java.util.List;
 
 public class GroovyModel {
 
@@ -106,6 +107,18 @@ public class GroovyModel {
             this.builder.addSensor(toCopyed);
             this.binding.setVariable(toCopyed.getName(), toCopyed);
         }
+    }
+
+    public void aggregate(String[] sensors, String name) {
+
+        System.out.println("#### -> " + sensors.length);
+
+        for (String sensor: sensors) {
+
+            Sensor s = (Sensor) binding.getVariable(sensor);
+            // TODO
+        }
+
     }
 
     public void run() {

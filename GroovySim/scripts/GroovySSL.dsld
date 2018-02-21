@@ -15,6 +15,10 @@ contribute(currentType(subType('groovy.lang.Script'))) {
 	method type: void, name: 'functionlaw', params: [function:String], doc: 'Add function law'
 
 	method type: Script, name: 'generateSet', params: [sensor:Object, number:Integer], doc: 'Generate the set of sensor'
+	method type: void, name: 'aggregateSet', params: [name:String], doc: 'Aggregate the set'
+
+	method type: Script, name: 'aggregate', params: [sensors:String[]], doc: 'Aggregate sensors'
+	method type: void, name: 'to', params: [name:String], doc: 'Add aggregation to'
 
 	method type: Script, name: 'noise', params: [amplitude:double], doc: 'Add noise to the simulation'
 	method type: Script, name: 'partialnoise', params: [probability:double, amplitude:double], doc: 'Add partial noise to the simulation'
