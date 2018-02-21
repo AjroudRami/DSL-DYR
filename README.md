@@ -34,6 +34,25 @@ outputcsv "outputdata.csv"
 // Run the simulation named "Sensor Simulation Lab (SSL)"
 run "Sensor Simulation Lab (SSL)"
 ```
+
+## Running the code
+
+Prerequisite 
+In order to build and execute the project, please have the following item installed 
+- Maven 
+- Java 8
+- Docker
+
+Execute the following bash file to `build` the project 
+```bash
+sh build.sh
+```
+
+Execute the following bash file to `run` the project
+```bash
+sh run.sh [input file .groovy]
+```
+
 ## Features
 
 Input output features :
