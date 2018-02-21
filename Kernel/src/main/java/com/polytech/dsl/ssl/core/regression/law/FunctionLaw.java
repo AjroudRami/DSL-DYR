@@ -1,6 +1,7 @@
 package com.polytech.dsl.ssl.core.regression.law;
 
 import com.polytech.dsl.ssl.source.SensorMeasure;
+import org.apache.log4j.Logger;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
@@ -9,6 +10,8 @@ import java.util.function.Function;
 
 public class FunctionLaw implements SensorLaw{
 
+
+    private static final Logger LOGGER = Logger.getLogger(FunctionLaw.class);
     private static final String DEFAULT_KEY = "function";
 
     private ScriptEngine engine ;
@@ -23,12 +26,12 @@ public class FunctionLaw implements SensorLaw{
     public SensorMeasure getMeasure(long time) {
         SensorMeasure measure = new SensorMeasure(time);
         try {
-            @SuppressWarnings("unchecked")
             Function<Object,Object> f = (Function<Object,Object> )engine.eval(
                     String.format("new java.util.function.Function(%s)", function));
             measure.putValue(DEFAULT_KEY, f.apply(time));
         } catch (ScriptException e) {
-            e.printStackTrace();
+            LOGGER.info("Error when parsing function. Function should follow the following example : function(x) x * x + 2");
+            System.exit(1);
         }
         return measure;
     }

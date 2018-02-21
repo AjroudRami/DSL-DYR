@@ -57,6 +57,7 @@ public class GroovyModel {
         // Example sensor.setLaw(new Random1D(0, 20));
         if (min >max || min < 0 || max < 0){
             LOGGER.info("Random law input error. Should follow the following format  : randomlaw min, max (where 0 < min < max )");
+            LOGGER.info("Program not compiled");
             System.exit(0);
         }
         this.sensor.setLaw(new Random1D(min, max));
