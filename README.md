@@ -2,13 +2,13 @@
 author :
 - Danial BIN AHMAD
 - Rami AJROUD
-- Yasin Eroglu
+- Yasin EROGLU
 
 ## Introduction
 This project is a part of our Domain Language Specific (DSL) course at Polytech Nice Sophia Antipolis. The goal of the project is to create a language specific to the IoT (Internet of Things) domain. 
 
 ## Usage Context
-Developing a middleware dedicated to IoT networks is a non-trivial task. Testing the system in real condition does not make sense, as one should be able to work without being connected to the 12,345 sensors deployed in a Smart City (or a Smart Campus [3]). But the test infrastructure must be as close to the real system as possible. It is then necessary to simulate the sensor network in a proper way.
+Developing a middleware dedicated to IoT networks is a non-trivial task. Testing the system in real condition does not make sense, as one should be able to work without being connected to the 12,345 sensors deployed in a Smart City (or a Smart Campus). But the test infrastructure must be as close to the real system as possible. It is then necessary to simulate the sensor network in a proper way.
 
 Therefore, having a system capable of simulating a set of data retrieve by IoT sensor, or generating this data base on different law is the simplest and cost effective way.
 
