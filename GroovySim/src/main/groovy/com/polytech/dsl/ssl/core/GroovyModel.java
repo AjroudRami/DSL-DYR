@@ -15,7 +15,6 @@ import groovy.lang.Binding;
 import org.apache.log4j.Logger;
 
 import java.io.File;
-import java.util.List;
 
 public class GroovyModel {
 
@@ -41,6 +40,16 @@ public class GroovyModel {
         // Example : SimulationBuilder builder = new SimulationBuilder(0, 100, 1);
 //        this.builder = new SimulationBuilder(System.currentTimeMillis() + start, System.currentTimeMillis()+end, frequency);
     }
+
+    /**
+     * TEST
+     *
+     * @param sensor
+     */
+    public void addSensor(Sensor sensor) {
+        this.builder.addSensor(sensor);
+    }
+
 
     public void createSensor(String name) {
         // Example : Sensor sensor = new Sensor("sensorName");
@@ -126,4 +135,7 @@ public class GroovyModel {
         builder.run();
     }
 
+    public SimulationBuilder getBuilder() {
+        return builder;
+    }
 }

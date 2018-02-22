@@ -1,10 +1,49 @@
 package com.polytech.dsl.ssl.core
 
 import com.polytech.dsl.ssl.core.enums.FrequencyUnit
-
+import com.polytech.dsl.ssl.utils.Laws
+import com.polytech.dsl.ssl.utils.Transforms
 
 abstract class GroovyBasescript extends Script {
 
+    /**
+     * Test
+     */
+    def addSensor = { name ->
+        GroovySensor sensor = GroovySensor.sensor(name)
+        ((GroovyBinding) this.getBinding()).getGroovyModel().addSensor(sensor)
+        sensor
+    }
+
+    def addSet = { name ->
+        GroovySensor sensor = GroovySensor.sensor(name)
+        ((GroovyBinding) this.getBinding()).getGroovyModel().addSensor(sensor)
+    }
+
+    def sensors = { String[] names ->
+        ArrayList<Sensor> sensors = new ArrayList<>()
+        for (int i = 0; i < names.length; i++) {
+            sensors.add(((GroovyBinding) this.getBinding()).getGroovyModel().getBuilder().getSensor(names[i]))
+        }
+        return sensors
+    }
+
+    def Laws = new Laws()
+
+    def Transform = new Transforms()
+
+    def run() {
+        ((GroovyBinding) this.getBinding()).getGroovyModel().run()
+    }
+
+    //TODO rename this method to sensor
+    def getSensor(String name) {
+        return ((GroovyBinding) this.getBinding()).getGroovyModel().getBuilder().getSensor(name)
+    }
+
+    /**
+     * Test
+     */
     def sensor(String name) {
         println("Create new sensor named : " + name)
 

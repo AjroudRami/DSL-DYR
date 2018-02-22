@@ -1,15 +1,17 @@
 package com.polytech.dsl.ssl.core
 
+import com.polytech.dsl.ssl.utils.Transforms
 import org.apache.log4j.Logger
 import org.codehaus.groovy.control.CompilerConfiguration
 import org.codehaus.groovy.control.customizers.SecureASTCustomizer
 
 class GroovyDSL {
 
-    private static final Logger LOGGER = Logger.getLogger(GroovyDSL.class);
+    private static final Logger LOGGER = Logger.getLogger(GroovyDSL.class)
     private GroovyShell shell
     private CompilerConfiguration configuration
     private GroovyBinding binding
+    private Transforms transforms
 
     GroovyDSL() {
 
@@ -27,10 +29,6 @@ class GroovyDSL {
             closuresAllowed = false
             //disallow method definitions
             methodDefinitionAllowed = true
-            //empty white list => forbid imports
-            importsWhitelist = [
-                    'java.lang.*'
-            ]
             staticImportsWhitelist = []
             staticStarImportsWhitelist= []
             //language tokens disallowed
@@ -55,7 +53,6 @@ class GroovyDSL {
 
     void eval(File scriptFile) {
         Script script = shell.parse(scriptFile)
-
         binding.setScript(script)
         script.setBinding(binding)
         try {
