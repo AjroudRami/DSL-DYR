@@ -1,25 +1,21 @@
 package com.polytech.dsl.ssl.core;
 
-import com.polytech.dsl.ssl.core.regression.Regression;
 import com.polytech.dsl.ssl.core.transform.SensorMeasureTransform;
 import com.polytech.dsl.ssl.output.Output;
-import com.polytech.dsl.ssl.source.Source;
 import com.polytech.dsl.ssl.source.TimeSeries;
 import com.polytech.dsl.ssl.util.TimeRange;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 public class SimulationBuilder {
 
     private static Logger LOGGER = Logger.getLogger(SimulationBuilder.class.getSimpleName());
 
-    private Source source;
     private Output output;
-    private List<Sensor> sensors;
-    private Regression regression;
+    private Map<String, Sensor> sensors;
     private SensorMeasureTransform sensorMeasureTransform;
 
     private TimeRange range;
@@ -31,31 +27,25 @@ public class SimulationBuilder {
                 .setEnd(end)
                 .setFrequency(unit, frequency);
 
-        LOGGER.info("Init simulation builder, " +
+        LOGGER.info("Init simulation: " +
                 "startTime = " + start + "; endTime = " + end + "; frequency = " + frequency);
     }
 
     public SimulationBuilder() {
-        this.sensors = new ArrayList<>();
-    }
-
-    public SimulationBuilder setSource(Source src){
-        this.source = src;
-        return this;
+        this.sensors = new HashMap<>();
     }
 
     public SimulationBuilder addSensor(Sensor sensor) {
-        this.sensors.add(sensor);
+        this.sensors.put(sensor.getName(), sensor);
         return this;
+    }
+
+    public Sensor getSensor(String name) {
+        return this.sensors.get(name);
     }
 
     public SimulationBuilder setOutput(Output out) {
         this.output = out;
-        return this;
-    }
-
-    public SimulationBuilder approximateSource(Regression regression) {
-        this.regression = regression;
         return this;
     }
 
@@ -65,7 +55,7 @@ public class SimulationBuilder {
     }
 
     public void run() {
-        for (Sensor sensor : sensors) {
+        for (Sensor sensor : sensors.values()) {
             try {
                 runSensorSimulation(sensor);
             } catch (IOException e) {

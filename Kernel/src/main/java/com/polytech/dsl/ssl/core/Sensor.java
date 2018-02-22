@@ -13,8 +13,12 @@ public class Sensor implements Cloneable {
     private SensorLaw law;
     private List<SensorMeasureTransform> transformers;
 
-    public Sensor(String name) {
+    public Sensor() {
         transformers = new ArrayList<>();
+    }
+
+    public Sensor(String name) {
+        this();
         this.name = name;
     }
 
