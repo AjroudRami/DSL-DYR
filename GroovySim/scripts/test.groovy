@@ -1,2 +1,2 @@
 
-addSensor "sensor" withLaw Laws.random1D(10, 20) applyNoise Transforms.randomNoise(10)
+addSensor "sensor" withLaw laws.random1D(10, 20) applyNoise transforms.randomNoise(10)

@@ -28,9 +28,9 @@ abstract class GroovyBasescript extends Script {
         return sensors
     }
 
-    def Laws = new Laws()
+    def laws = new Laws()
 
-    def Transform = new Transforms()
+    def transforms = new Transforms()
 
     def run() {
         ((GroovyBinding) this.getBinding()).getGroovyModel().run()
