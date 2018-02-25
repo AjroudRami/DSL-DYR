@@ -1,7 +1,9 @@
 package com.polytech.dsl.ssl.core
 
 import com.polytech.dsl.ssl.core.enums.FrequencyUnit
+import com.polytech.dsl.ssl.output.Output
 import com.polytech.dsl.ssl.utils.Laws
+import com.polytech.dsl.ssl.utils.Outputs
 import com.polytech.dsl.ssl.utils.Transforms
 
 abstract class GroovyBasescript extends Script {
@@ -9,6 +11,13 @@ abstract class GroovyBasescript extends Script {
     /**
      * Test
      */
+
+    def laws = new Laws()
+
+    def transforms = new Transforms()
+
+    def out = new Outputs()
+
     def addSensor = { name ->
         GroovySensor sensor = GroovySensor.sensor(name)
         ((GroovyBinding) this.getBinding()).getGroovyModel().addSensor(sensor)
@@ -28,9 +37,7 @@ abstract class GroovyBasescript extends Script {
         return sensors
     }
 
-    def laws = new Laws()
 
-    def transforms = new Transforms()
 
     def run() {
         ((GroovyBinding) this.getBinding()).getGroovyModel().run()
@@ -41,6 +48,9 @@ abstract class GroovyBasescript extends Script {
         return ((GroovyBinding) this.getBinding()).getGroovyModel().getBuilder().getSensor(name)
     }
 
+    def outputTo(Output out) {
+        ((GroovyBinding) this.getBinding()).getGroovyModel().getBuilder().setOutput(out)
+    }
     /**
      * Test
      */

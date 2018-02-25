@@ -14,12 +14,19 @@ public class CSVWriter implements Output {
 
     private static String SEP = ";";
     private static Logger logger = Logger.getLogger(CSVWriter.class.getName());
+    private String filePath = "";
 
+    public CSVWriter() {
+    }
+
+    public CSVWriter(String filePath) {
+        this.filePath = filePath;
+    }
 
     @Override
     public void write(TimeSeries series) throws IOException {
         //TODO change path
-        String path = series.getSensorName();
+        String path = filePath.equals("") ? series.getSensorName() : filePath + "/" + series.getSensorName();
         File f = new File(path);
         f.createNewFile();
         PrintWriter pw = new PrintWriter(new FileWriter(f));
