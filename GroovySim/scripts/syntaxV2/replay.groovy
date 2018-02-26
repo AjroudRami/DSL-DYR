@@ -1,9 +1,9 @@
-simulation "simulation" timerange "now", "14-02-2018 23:59:00" frequency 1,"SECOND"
+simulation "simulation" timerange "14-02-2018 03:50:00", "14-02-2018 03:59:00" frequency 1,"SECOND"
 
-addSensor "replicated" withLaw laws.replayCSV("/home/user/DSL-DYR/GroovySim/src/test/resources/toreplicate.csv")
+addSensor "replicated" withLaw laws.replayCSV("./testScripts/replay.csv")
 
 generateSet "replicated", 3
 
-outputTo out.CSV("replicated.csv")
+outputTo out.CSV("out")
 
-run()
+runSimulation()

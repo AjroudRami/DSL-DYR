@@ -6,11 +6,11 @@ import java.util.Random;
 
 public class Random1D extends RandomLaw {
 
-    private int low;
-    private int high;
+    private double low;
+    private double high;
     private String label = "RD";
 
-    public Random1D(int low, int high) {
+    public Random1D(double low, double high) {
         super();
         this.low = low;
         this.high = high;
@@ -33,10 +33,10 @@ public class Random1D extends RandomLaw {
     }
 
 
-    private int getRandomValue() {
+    private double getRandomValue() {
         Random random = new Random();
-        int randInt = random.nextInt(high - low);
+        double randNB = random.nextDouble() * (high - low) + low;
 
-        return randInt + low;
+        return randNB;
     }
 }

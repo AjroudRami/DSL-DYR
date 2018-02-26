@@ -37,11 +37,11 @@ class GroovyDSL {
             tokensWhitelist= []
             //types allowed to be used  (including primitive types)
             constantTypesClassesWhiteList= [
-                    int, Integer, Number, Integer.TYPE, String, Object
+                    int, Integer, Number, Integer.TYPE, String, Object, Double.TYPE, BigInteger, double, BigDecimal
             ]
             //classes who are allowed to be receivers of method calls
             receiversClassesWhiteList= [
-                    int, Number, Integer, String, Object
+                    int, Number, Integer, String, Object, Double.TYPE, BigInteger, double, BigDecimal
             ]
         }
 

@@ -36,17 +36,17 @@ public class Random1DTransform implements SensorMeasureTransform {
 
     protected SensorMeasure transform(SensorMeasure measure, double amplitude) {
         SensorMeasure res = new SensorMeasure(measure.time());
-        Arrays.stream(measure.getLabels()).forEach(
-                label -> {
-                    Random random = new Random();
-                    Optional<Integer> opt = measure.getInt(label);
-                    if (opt.isPresent()) {
-                        double value = opt.get();
-                        double noiseValue = value + random.nextDouble() * (amplitude / 2);
-                        res.putValue(label, noiseValue);
-                    }
+        for(int i = 0; i < measure.getLabels().length; i++) {
+            String label = measure.getLabels()[i];
+                Random random = new Random();
+                Optional<Double> opt = measure.getDouble(label);
+                if (opt.isPresent()) {
+                    double value = opt.get();
+                    double rd = random.nextDouble() * amplitude / 2.0;
+                    double noiseValue = value + rd;
+                    res.putValue(label, noiseValue);
                 }
-        );
+        }
         return res;
     }
 }

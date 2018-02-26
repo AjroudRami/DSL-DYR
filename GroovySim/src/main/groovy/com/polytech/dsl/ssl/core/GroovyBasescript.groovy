@@ -4,6 +4,7 @@ import com.polytech.dsl.ssl.core.enums.FrequencyUnit
 import com.polytech.dsl.ssl.output.Output
 import com.polytech.dsl.ssl.utils.Laws
 import com.polytech.dsl.ssl.utils.Outputs
+import com.polytech.dsl.ssl.utils.Sources
 import com.polytech.dsl.ssl.utils.Transforms
 
 abstract class GroovyBasescript extends Script {
@@ -11,6 +12,8 @@ abstract class GroovyBasescript extends Script {
     /**
      * Test
      */
+
+    def sources = new Sources()
 
     def laws = new Laws()
 
@@ -39,7 +42,7 @@ abstract class GroovyBasescript extends Script {
 
 
 
-    def run() {
+    def runSimulation() {
         ((GroovyBinding) this.getBinding()).getGroovyModel().run()
     }
 

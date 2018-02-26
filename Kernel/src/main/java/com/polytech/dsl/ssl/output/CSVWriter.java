@@ -25,10 +25,16 @@ public class CSVWriter implements Output {
 
     @Override
     public void write(TimeSeries series) throws IOException {
+        File dir = new File(filePath);
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
         //TODO change path
-        String path = filePath.equals("") ? series.getSensorName() : filePath + "/" + series.getSensorName();
+        String path = filePath.equals("") ? series.getSensorName() : filePath + "/" + series.getSensorName() + ".csv";
         File f = new File(path);
-        f.createNewFile();
+        if(!f.exists()){
+            f.createNewFile();
+        }
         PrintWriter pw = new PrintWriter(new FileWriter(f));
         Collection<SensorMeasure> measures = series.getMeasures();
         if (measures.size() == 0) return;

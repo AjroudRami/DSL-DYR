@@ -1,9 +1,0 @@
-simulation "simulation" timerange "now", "14-02-2018 23:59:00" frequency 1,"SECOND"
-
-addSensor "randomisedWithNoise" withLaw laws.random1D(10, 50) applyNoise transform.partialNoise(10.0, 0.5)
-
-generateSet "randomisedWithNoise", 3
-
-outputTo out.CSV("randomisedWithNoise.csv")
-
-run()

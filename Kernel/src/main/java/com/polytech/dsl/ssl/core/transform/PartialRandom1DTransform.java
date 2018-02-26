@@ -22,13 +22,14 @@ public class PartialRandom1DTransform extends Random1DTransform {
     @Override
     public SensorMeasure transform(SensorMeasure measure) {
         if (mustApplyTransform()) {
-            super.transform(measure, this.amplitude);
+            return super.transform(measure, this.amplitude);
         }
         return measure;
     }
 
     private boolean mustApplyTransform() {
         Random random = new Random();
-        return random.nextDouble() < probability;
+        boolean condition = random.nextDouble() < probability;
+        return condition;
     }
 }

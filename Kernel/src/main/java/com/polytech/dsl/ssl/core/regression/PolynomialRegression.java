@@ -229,6 +229,11 @@ public class PolynomialRegression implements Comparable<PolynomialRegression>, R
         System.out.println(regression);
     }
 
+    public PolynomialRegression(int degree) {
+        this.variableName = "f(t)";
+        this.degree = degree;
+    }
+
     public PolynomialRegression() {
         this.variableName = "f(t)";
     }
@@ -236,7 +241,6 @@ public class PolynomialRegression implements Comparable<PolynomialRegression>, R
     @Override
     public SensorLaw getSensorLaw(Source source) {
         TimeSeries timeSeries = source.getTimeSeries();
-        int degree = 3;
         Iterator<SensorMeasure> measureIterator = timeSeries.getMeasures().iterator();
         int nbMeasures = timeSeries.getMeasures().size();
         double[] x = new double[nbMeasures];

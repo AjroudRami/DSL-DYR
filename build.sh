@@ -9,5 +9,3 @@ cd ..
 cd GroovySim
 ./build.sh
 cd ..
-
-docker-compose up -d

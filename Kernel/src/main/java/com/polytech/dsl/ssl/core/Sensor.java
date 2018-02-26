@@ -43,7 +43,7 @@ public class Sensor implements Cloneable {
     }
 
     private SensorMeasure getSensorMeasure(long time, int i) {
-        if (i > 0) {
+        if (i >= 0) {
             return this.transformers.get(i).transform(getSensorMeasure(time, i - 1));
         } else {
             return this.law.getMeasure(time);

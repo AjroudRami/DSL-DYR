@@ -1,9 +1,9 @@
-simulation "simulation" timerange "now", "14-02-2018 23:59:00" frequency 1,"SECOND"
+simulation "simulation" timerange "14-02-2018 03:50:00", "14-02-2018 03:59:00" frequency 1,"SECOND"
 
-addSensor "regressioned" withLaw laws.polynomialRegression("/home/user/DSL-DYR/GroovySim/src/test/resources/toreplicate.csv")
+addSensor "regressioned" withLaw laws.polynomialRegression(sources.CSV("./testScripts/poly.csv"), 3)
 
 generateSet "regressioned", 3
 
-outputTo out.CSV("regressioned.csv")
+outputTo out.CSV("out")
 
-run()
+runSimulation()

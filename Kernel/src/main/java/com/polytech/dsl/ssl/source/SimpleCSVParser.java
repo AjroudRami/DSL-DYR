@@ -22,6 +22,12 @@ public class SimpleCSVParser implements Source{
     private Map<String, Integer> reversedKeyMap;
     private File file;
 
+    public SimpleCSVParser(String filename) {
+        this.file = new File(filename);
+        this.keyMap = new HashMap<>();
+        this.reversedKeyMap = new HashMap<>();
+    }
+
     public SimpleCSVParser(File f){
         this.file = f;
         this.keyMap = new HashMap<>();

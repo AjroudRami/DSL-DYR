@@ -26,7 +26,9 @@ public class FunctionLaw implements SensorLaw{
     public SensorMeasure getMeasure(long time) {
         SensorMeasure measure = new SensorMeasure(time);
         try {
-            Function<Object,Object> f = (Function<Object,Object> )engine.eval(
+
+            String timeFunction = function.replace("t", "x");
+            Function<Object,Double> f = (Function<Object,Double> )engine.eval(
                     String.format("new java.util.function.Function(%s)", function));
             measure.putValue(DEFAULT_KEY, f.apply(time));
         } catch (ScriptException e) {
