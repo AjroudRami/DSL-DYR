@@ -26,6 +26,10 @@ public class Sensor implements Cloneable {
         this.law = law;
     }
 
+    public SensorLaw getLaw() {
+        return law;
+    }
+
     public SensorMeasure getSensorMeasure(long time) {
         return this.getSensorMeasure(time, transformers.size() - 1);
     }

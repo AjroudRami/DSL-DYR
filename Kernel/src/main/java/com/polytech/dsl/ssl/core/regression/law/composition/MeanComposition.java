@@ -7,14 +7,13 @@ import com.polytech.dsl.ssl.source.SensorMeasure;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SumComposition implements CompositionLaw {
+public class MeanComposition implements CompositionLaw {
 
     private List<SensorLaw> laws;
 
-    private SumComposition() {
+    public MeanComposition() {
         this.laws = new ArrayList<>();
     }
-
 
     public void setSensors(List<Sensor> sensors) {
         for(Sensor sensor : sensors) {
@@ -30,14 +29,14 @@ public class SumComposition implements CompositionLaw {
             SensorMeasure measure = law.getMeasure(time);
             sum += measure.getDouble(measure.getLabels()[0]).get();
         }
-        result.putValue("sum", sum);
+        sum /= laws.size();
+        result.putValue("mean", sum);
         return result;
     }
 
     @Override
     public SensorLaw cleanCopy() {
-        SumComposition copy = new SumComposition();
         //TODO copy
-        return copy;
+        return null;
     }
 }

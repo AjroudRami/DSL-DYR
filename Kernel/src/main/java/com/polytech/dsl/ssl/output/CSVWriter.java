@@ -29,7 +29,6 @@ public class CSVWriter implements Output {
         if (!dir.exists()) {
             dir.mkdir();
         }
-        //TODO change path
         String path = filePath.equals("") ? series.getSensorName() : filePath + "/" + series.getSensorName() + ".csv";
         File f = new File(path);
         if(!f.exists()){

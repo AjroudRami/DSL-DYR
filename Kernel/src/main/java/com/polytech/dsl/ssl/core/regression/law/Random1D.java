@@ -23,6 +23,7 @@ public class Random1D extends RandomLaw {
         } else {
             SensorMeasure measure = new SensorMeasure(time);
             measure.putValue(label, getRandomValue());
+            super.generatedMeasures.put(time, measure);
             return measure;
         }
     }

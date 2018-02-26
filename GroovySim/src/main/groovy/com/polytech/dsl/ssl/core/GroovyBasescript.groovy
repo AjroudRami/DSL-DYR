@@ -2,6 +2,7 @@ package com.polytech.dsl.ssl.core
 
 import com.polytech.dsl.ssl.core.enums.FrequencyUnit
 import com.polytech.dsl.ssl.output.Output
+import com.polytech.dsl.ssl.utils.Compositions
 import com.polytech.dsl.ssl.utils.Laws
 import com.polytech.dsl.ssl.utils.Outputs
 import com.polytech.dsl.ssl.utils.Sources
@@ -10,8 +11,10 @@ import com.polytech.dsl.ssl.utils.Transforms
 abstract class GroovyBasescript extends Script {
 
     /**
-     * Test
+     * Start Syntax V2
      */
+
+    def compositions = new Compositions()
 
     def sources = new Sources()
 
@@ -27,15 +30,16 @@ abstract class GroovyBasescript extends Script {
         sensor
     }
 
-    def addSet = { name ->
-        GroovySensor sensor = GroovySensor.sensor(name)
+    def addCompositeSensor = { name ->
+        GroovyCompositeSensor sensor = new GroovyCompositeSensor((String) name)
         ((GroovyBinding) this.getBinding()).getGroovyModel().addSensor(sensor)
+        sensor
     }
 
-    def sensors = { String[] names ->
+    def sensors = { ArrayList<String> names ->
         ArrayList<Sensor> sensors = new ArrayList<>()
-        for (int i = 0; i < names.length; i++) {
-            sensors.add(((GroovyBinding) this.getBinding()).getGroovyModel().getBuilder().getSensor(names[i]))
+        for (String name : names) {
+            sensors.add(((GroovyBinding) this.getBinding()).getGroovyModel().getBuilder().getSensor(name))
         }
         return sensors
     }
@@ -55,7 +59,7 @@ abstract class GroovyBasescript extends Script {
         ((GroovyBinding) this.getBinding()).getGroovyModel().getBuilder().setOutput(out)
     }
     /**
-     * Test
+     * End Syntax V2
      */
     def sensor(String name) {
         println("Create new sensor named : " + name)
@@ -151,12 +155,6 @@ abstract class GroovyBasescript extends Script {
     def run(String name) {
         println("Run the simulation : " + name)
         ((GroovyBinding) this.getBinding()).getGroovyModel().run()
-    }
-
-    def random1D(int min, int max) {
-        println "in random.."
-        // TODO ??
-        return null
     }
 
 
