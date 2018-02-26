@@ -10,6 +10,10 @@ class GroovySensorSet extends Sensor {
         super(name)
     }
 
+    def fromSensors(List<Sensor> sensors) {
+
+    }
+
     def composeUsing(CompositionLaw law) {
         this.setLaw(law)
         return this

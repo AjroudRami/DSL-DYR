@@ -4,7 +4,11 @@ class Transforms {
 
     Transforms() {}
 
-    static randomNoise(int v) {
+    static random(double v) {
         return null
+    }
+
+    static partialRandom(double amplitude, double coverage) {
+
     }
 }

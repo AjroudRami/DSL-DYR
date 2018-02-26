@@ -109,7 +109,9 @@ abstract class GroovyBasescript extends Script {
     def generateSet(Object sensor, Integer number) {
         println ("Generate " + number + " set of " + sensor + "sensor")
         ((GroovyBinding) this.getBinding()).getGroovyModel().generateSet(
-                sensor instanceof String ? (Sensor)((GroovyBinding)this.getBinding()).getVariable(sensor) : (Sensor)sensor,
+                sensor instanceof String ?
+                        (Sensor)((GroovyBinding)this.getBinding()).getGroovyModel().getBuilder().getSensor(sensor) :
+                        (Sensor) sensor,
                 number)
     }
 
