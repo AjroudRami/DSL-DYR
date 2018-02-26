@@ -1,5 +1,6 @@
 package com.polytech.dsl.ssl.source;
 
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import java.io.File;
@@ -81,8 +82,8 @@ public class SimpleCSVParser implements Source{
         try {
             return this.parse();
         } catch (IOException e) {
-            LOGGER.info("Error when parsing file. Source not found at " + file.getPath());
-            LOGGER.info("Program not compiled");
+            LOGGER.log(Level.ERROR,"Error when parsing file. Source not found at " + file.getPath());
+            LOGGER.log(Level.ERROR,"Program not compiled");
             System.exit(1);
             return new TimeSeries();
         }

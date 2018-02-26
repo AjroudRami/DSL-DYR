@@ -6,5 +6,5 @@ if [ -z "$FILE1" ]
 then
     echo "usage: sh run.sh [input file]"
 else
-    java -jar GroovySim/target/GroovySim-1.0-SNAPSHOT-jar-with-dependencies.jar $FILE1
+    java -jar GroovySim/target/*.jar $FILE1
 fi

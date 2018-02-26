@@ -1,9 +1,11 @@
 package com.polytech.dsl.ssl.core
 
 import com.polytech.dsl.ssl.utils.Transforms
+import org.apache.log4j.Level
 import org.apache.log4j.Logger
 import org.codehaus.groovy.control.CompilerConfiguration
 import org.codehaus.groovy.control.customizers.SecureASTCustomizer
+
 
 class GroovyDSL {
 
@@ -58,9 +60,9 @@ class GroovyDSL {
         try {
             script.run()
         }catch (MissingMethodException e){
-            LOGGER.info("Error when parsing script")
-            LOGGER.info(e.message)
-            LOGGER.info("Program not compiled")
+            LOGGER.log(Level.ERROR, "Error when parsing script")
+            LOGGER.log(Level.ERROR,e.message)
+            LOGGER.log(Level.ERROR,"Program not compiled")
             System.exit(0)
         }
     }

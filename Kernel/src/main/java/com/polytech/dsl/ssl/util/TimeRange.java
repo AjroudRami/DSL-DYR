@@ -1,5 +1,6 @@
 package com.polytech.dsl.ssl.util;
 
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import java.text.ParseException;
@@ -35,8 +36,8 @@ public class TimeRange {
             try {
                 this.start.setTime(sdf.parse(start));
             } catch (ParseException e) {
-                LOGGER.info("Error parsing start date. Start date should follow this format : dd-MM-yyyy HH:mm:ss");
-                LOGGER.info("Program not compiled");
+                LOGGER.log(Level.ERROR, "Error parsing start date. Start date should follow this format : dd-MM-yyyy HH:mm:ss");
+                LOGGER.log(Level.ERROR, "Program not compiled");
                 System.exit(0);
             }
         }

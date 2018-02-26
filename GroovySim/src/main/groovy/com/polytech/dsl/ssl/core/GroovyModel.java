@@ -12,6 +12,7 @@ import com.polytech.dsl.ssl.output.DatabaseWriter;
 import com.polytech.dsl.ssl.source.SimpleCSVParser;
 import com.polytech.dsl.ssl.source.Source;
 import groovy.lang.Binding;
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import java.io.File;
@@ -66,8 +67,8 @@ public class GroovyModel {
     public void setRandomLaw(int min, int max) {
         // Example sensor.setLaw(new Random1D(0, 20));
         if (min >max || min < 0 || max < 0){
-            LOGGER.info("Random law input error. Should follow the following format  : randomlaw min, max (where 0 < min < max )");
-            LOGGER.info("Program not compiled");
+            LOGGER.log(Level.ERROR,"Random law input error. Should follow the following format  : randomlaw min, max (where 0 < min < max )");
+            LOGGER.log(Level.ERROR,"Program not compiled");
             System.exit(0);
         }
         this.sensor.setLaw(new Random1D(min, max));

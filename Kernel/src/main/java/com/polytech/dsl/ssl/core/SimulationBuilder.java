@@ -4,11 +4,12 @@ import com.polytech.dsl.ssl.core.transform.SensorMeasureTransform;
 import com.polytech.dsl.ssl.output.Output;
 import com.polytech.dsl.ssl.source.TimeSeries;
 import com.polytech.dsl.ssl.util.TimeRange;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 
 public class SimulationBuilder {
 
@@ -26,7 +27,12 @@ public class SimulationBuilder {
                 .setStart(start)
                 .setEnd(end)
                 .setFrequency(unit, frequency);
-
+        if (this.range.getStart().getTimeInMillis() > this.range.getEnd().getTimeInMillis()){
+            LOGGER.log(Level.ERROR,
+                    "[Error] start time is bigger than end time.");
+            LOGGER.log(Level.ERROR,"Program not compiled");
+            System.exit(0);
+        }
         LOGGER.info("Init simulation: " +
                 "startTime = " + start + "; endTime = " + end + "; frequency = " + frequency);
     }
