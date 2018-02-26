@@ -33,4 +33,8 @@ class Laws {
     static replayCSV(String filename) {
         new IdentityLaw(new SimpleCSVParser(new File(filename)))
     }
+
+    static identity(Source source) {
+        new IdentityLaw(source)
+    }
 }
