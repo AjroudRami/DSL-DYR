@@ -8,14 +8,14 @@ author :
 This project is a part of our Domain Language Specific (DSL) course at Polytech Nice Sophia Antipolis. The goal of the project is to create a language specific to the IoT (Internet of Things) domain. 
 
 ## Usage Context
-Developing a middleware dedicated to IoT networks is a non-trivial task. Testing the system in real condition does not make sense, as one should be able to work without being connected to the 12,345 sensors deployed in a Smart City (or a Smart Campus). But the test infrastructure must be as close to the real system as possible. It is then necessary to simulate the sensor network in a proper way.
+Developing a middleware dedicated to IoT networks is not an easy task. Testing the system in real condition does not make sense, as one should be able to work without being connected to the 12,345 sensors deployed in a Smart City (or a Smart Campus). But the test infrastructure must be as close to the real system as possible. It is then necessary to simulate the sensor network in a proper way.
 
 Therefore, having a system capable of simulating a set of data retrieve by IoT sensor, or generating this data base on different law is the simplest and cost effective way.
 
 ## The language
-Below is a simple usage of the language
+Below is an example of a simple usage of the language
 
-v1
+SSL version 1
 ```groovy
 // Declaring a simulation named "MySimulation"
 // with time range starting at "now" (current time) and stop at "21-02-2018 23:59:00"
@@ -36,7 +36,7 @@ outputcsv "outputdata.csv"
 run "Sensor Simulation Lab (SSL)"
 ```
 
-v2
+SSL version 2
 
 ```groovy
 // Declaring a simulation named "MySimulation"
@@ -76,6 +76,8 @@ Execute the following bash file to `run` the project
 sh run.sh [input file .groovy]
 ```
 
+A set of examples are available in the folder `/script/syntaxV1` (examples implementing the first version of the language)
+ and `/scripts/syntaxV2` (examples implementing the second version of the language)
 ## Features
 
 Input output features :
@@ -85,11 +87,15 @@ Input output features :
 
 Law available :
 - Random 
+- Identity
 - Function
+- Polynomial 
 - Polynomial Regression
 
 Extension :
-- Composing multiple IoT sensor
+- Composing multiple IoT sensor by summing the value
+- Composing multiple IoT sensor by calculating the mean value
 
 Plus :
-- Apply general noise
+- Applying noise randomly on a sensor
+- Applying noise partially random on a sensor
