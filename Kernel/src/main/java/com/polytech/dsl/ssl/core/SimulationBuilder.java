@@ -8,7 +8,9 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SimulationBuilder {
@@ -44,6 +46,14 @@ public class SimulationBuilder {
     public SimulationBuilder addSensor(Sensor sensor) {
         this.sensors.put(sensor.getName(), sensor);
         return this;
+    }
+
+    public List<Sensor> getSensors(){
+        ArrayList<Sensor> res = new ArrayList<>();
+        for(Sensor s : this.sensors.values()) {
+            res.add(s);
+        }
+        return res;
     }
 
     public Sensor getSensor(String name) {
