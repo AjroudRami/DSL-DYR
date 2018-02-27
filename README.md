@@ -15,6 +15,7 @@ Therefore, having a system capable of simulating a set of data retrieve by IoT s
 ## The language
 Below is a simple usage of the language
 
+v1
 ```groovy
 // Declaring a simulation named "MySimulation"
 // with time range starting at "now" (current time) and stop at "21-02-2018 23:59:00"
@@ -35,6 +36,27 @@ outputcsv "outputdata.csv"
 run "Sensor Simulation Lab (SSL)"
 ```
 
+v2
+
+```groovy
+// Declaring a simulation named "MySimulation"
+// with time range starting at "now" (current time) and stop at "15-02-2018 23:59:00"
+// with the frequency of 1 "SECOND" (The simulation will generate a value for each second)
+simulation "simulation" timerange "now", "15-02-2018 23:59:00" frequency 1, "SECOND"
+
+// Declaring a sensor named "temp"
+// that contains random values between 10 and 40
+addSensor "temp" withLaw laws.random1D(10, 40)
+
+// The sensor "temp" is generated 6 times (copy)
+generateSet "temp", 6
+
+// The result of the simulation will be send to the folder outs
+outputTo out.CSV("outs")
+
+// Run the simulation 
+runSimulation()
+```
 ## Running the code
 
 Prerequisite 
