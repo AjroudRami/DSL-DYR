@@ -1,10 +1,10 @@
-simulation "simulation" timerange "now", "14-02-2018 03:59:00" frequency 1, "SECOND"
+simulation "simulation" timerange "now", "28-02-2018 01:59:00" frequency 1, "MINUTE"
 
-sensor "temp" functionlaw "function(x) 3 * x * x - 2 * x + 1"
-sensor "light" functionlaw "function(x) 3 * x * x + 2 * x -6"
+sensor "temp" functionlaw "x -> 3 * x * x - 2 * x + 1"
+sensor "light" functionlaw "x -> 3 * x * x + 2 * x - 6"
 
-generateSet "temp", 500
-generateSet "light", 500
+generateSet "temp", 5
+generateSet "light", 5
 
 outputDB "SSL"
 
