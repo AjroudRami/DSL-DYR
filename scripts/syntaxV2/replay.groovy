@@ -1,6 +1,6 @@
 simulation "simulation" timerange "14-02-2018 03:50:00", "14-02-2018 03:59:00" frequency 1,"SECOND"
 
-addSensor "replicated" withLaw laws.replayCSV("./testScripts/replay.csv")
+addSensor "replicated" withLaw laws.replayCSV("../../sensor-data/replay.csv")
 
 generateSet "replicated", 3
 
