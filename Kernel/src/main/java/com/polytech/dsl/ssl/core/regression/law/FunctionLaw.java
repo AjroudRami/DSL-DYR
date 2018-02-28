@@ -1,6 +1,7 @@
 package com.polytech.dsl.ssl.core.regression.law;
 
 import com.polytech.dsl.ssl.source.SensorMeasure;
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import pl.joegreen.lambdaFromString.LambdaCreationException;
 import pl.joegreen.lambdaFromString.LambdaFactory;
@@ -34,8 +35,10 @@ public class FunctionLaw implements SensorLaw{
                     .createLambda(function, new TypeReference<Function<Double, Double>>() {});
             measure.putValue(DEFAULT_KEY,lambda.apply((double)time));
         } catch (LambdaCreationException e) {
-            LOGGER.info("Error when parsing function. Function should follow the following example : t -> t + 1 ");
-            e.printStackTrace();
+            LOGGER.log( Level.ERROR, "Error when parsing lambda expression. It should follow the following example : t -> t + 1 ");
+            LOGGER.log( Level.ERROR,"It should follow the following example : t -> t + 1 ");
+            LOGGER.log( Level.ERROR,"Or the following example : t -> { Math.cos(t) + 1;} ");
+            LOGGER.log( Level.ERROR,"Make sure the value return by the lambda expression is a double ");
             System.exit(1);
         }
         return measure;

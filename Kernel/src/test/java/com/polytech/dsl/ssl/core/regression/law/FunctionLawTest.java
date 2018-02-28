@@ -21,4 +21,13 @@ public class FunctionLawTest {
         SensorMeasure measure = law.getMeasure((long)0.5);
         Assert.assertEquals(3.0, measure.getMeasures().get("function"));
     }
+
+    @Test
+    public void complexFunctionTest(){
+        FunctionLaw law = new FunctionLaw("x -> { if(x<1){ return 0.0; }else{return (double) x + 1; } }");
+        SensorMeasure measure = law.getMeasure((long)0.5);
+        Assert.assertEquals(0.0, measure.getMeasures().get("function"));
+        measure = law.getMeasure((long) 1.0);
+        Assert.assertEquals(2.0, measure.getMeasures().get("function"));
+    }
 }
