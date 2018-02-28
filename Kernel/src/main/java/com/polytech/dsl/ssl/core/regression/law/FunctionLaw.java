@@ -2,6 +2,9 @@ package com.polytech.dsl.ssl.core.regression.law;
 
 import com.polytech.dsl.ssl.source.SensorMeasure;
 import org.apache.log4j.Logger;
+import pl.joegreen.lambdaFromString.LambdaCreationException;
+import pl.joegreen.lambdaFromString.LambdaFactory;
+import pl.joegreen.lambdaFromString.TypeReference;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
@@ -26,13 +29,13 @@ public class FunctionLaw implements SensorLaw{
     public SensorMeasure getMeasure(long time) {
         SensorMeasure measure = new SensorMeasure(time);
         try {
-
-            String timeFunction = function.replace("t", "x");
-            Function<Object,Double> f = (Function<Object,Double> )engine.eval(
-                    String.format("new java.util.function.Function(%s)", function));
-            measure.putValue(DEFAULT_KEY, f.apply(time));
-        } catch (ScriptException e) {
-            LOGGER.info("Error when parsing function. Function should follow the following example : function(x) x * x + 2");
+            LambdaFactory lambdaFactory = LambdaFactory.get();
+            Function<Double, Double> lambda = lambdaFactory
+                    .createLambda(function, new TypeReference<Function<Double, Double>>() {});
+            measure.putValue(DEFAULT_KEY,lambda.apply((double)time));
+        } catch (LambdaCreationException e) {
+            LOGGER.info("Error when parsing function. Function should follow the following example : t -> t + 1 ");
+            e.printStackTrace();
             System.exit(1);
         }
         return measure;
