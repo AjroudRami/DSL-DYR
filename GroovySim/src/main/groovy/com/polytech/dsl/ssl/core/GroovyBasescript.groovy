@@ -38,6 +38,7 @@ abstract class GroovyBasescript extends Script {
 
     def sensors = { ArrayList<String> names ->
         ArrayList<Sensor> sensors = new ArrayList<>()
+        if (names.size() == 1 && names.get(0).equals("all")) return ((GroovyBinding) this.getBinding()).getGroovyModel().getBuilder().getSensors()
         for (String name : names) {
             sensors.add(((GroovyBinding) this.getBinding()).getGroovyModel().getBuilder().getSensor(name))
         }
