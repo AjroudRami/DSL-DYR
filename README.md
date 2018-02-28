@@ -57,6 +57,9 @@ outputTo out.CSV("outs")
 // Run the simulation 
 runSimulation()
 ```
+
+**More examples** can be found **[here](https://github.com/AjroudRami/DSL-DYR/tree/master/scripts/syntaxV2)**.
+
 ## Running the code
 
 Prerequisite 
@@ -71,7 +74,14 @@ Execute the following bash file to `build` the project
 sh build.sh
 ```
 
-Execute the following bash file to `run` the project
+Execute the following command to `run` the project
+
+```bash
+java -jar GroovySim/target/*.jar [input file .groovy]
+```
+
+or
+
 ```bash
 sh run.sh [input file .groovy]
 ```
@@ -97,5 +107,6 @@ Extension :
 - Composing multiple IoT sensor by calculating the mean value
 
 Plus :
-- Applying noise randomly on a sensor
-- Applying noise partially random on a sensor
+- Applying noise randomly on all measures for a sensor
+- Applying noise randomly on a portion of the measures for a sensor
+
